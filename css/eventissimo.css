@@ -1,0 +1,56 @@
+/* CSS Document */
+
+
+#day{
+	border: 1px solid #fff;
+	 display:block;
+	padding:10px; margin:10px;
+	background:#EFEFEF url(../images/event.png) no-repeat right top;
+}
+
+#dayRepeat{
+	border: 1px solid #fff; 
+	padding:10px; margin:10px; 
+	background:#EFEFEF url(../images/repeat.png) no-repeat right top;
+}
+
+.dayRepeat{
+	margin-right: 5px!important;
+	display: block;
+	float: left;
+}
+
+#location{
+	border: 1px solid #fff;display: block;
+	padding:10px; margin:10px;
+	background:#EFEFEF;
+}
+
+#address,#city,#zoom{width:200px}
+#updateMaps,#updateDate {color:#03F; cursor:pointer;}
+#updateMaps:hover,#updateDate:hover {text-decoration:underline;}
+
+#maps{width: 450px;
+height: 200px;}
+
+#eventCalendarExample {margin:0 auto;}
+
+#eventCalendarExample  .ui-datepicker {margin:0 auto;}
+
+#repeatSelect{display:none;}
+
+
+.blockCheched {
+	width:25%; float:left; text-transform:capitalize ;
+	padding: 0 0 20px 0;
+}
+
+#repeatSelect tr td {padding-top:10px;}
+
+.ui-datepicker{display:none;}
+
+.eventissimo_images li {width:33%;}
+.eventissimo_images li img{max-width:100%;}
+.eventissimo_images li ul.actions{max-width:100%;}
+.eventissimo_images li ul.actions li{font-size:80%;}
+.add_eventissimo_images{clear:both;}

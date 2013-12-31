@@ -1,0 +1,152 @@
+/* Eventissimo Plugin CSS Document */
+.when_eventissimo{
+	padding:5px; margin: 5px 0 5px 0;
+	border-top:2px double #CCC;
+	border-bottom:2px double #CCC; text-align:center;
+	width:100%; font-weight:bold;
+}
+#maps{width: 100%;
+height: 300px;}
+#linkto_eventissimo {
+	font-size:80%;
+}
+#linkto_eventissimo i {
+margin:0 5px 0 0;
+}
+
+#linkto_facebook {color:#3B5998 ;}
+#linkto_facebook i {
+margin:0 5px 0 0;
+}
+ 
+div.description_event .short-text {
+    overflow: hidden;
+    height: 10em;
+}
+ 
+div.description_event .full-text{
+    height: auto;
+}
+#eventissimo_address i{margin:0 5px 0 0;}
+div.description_event .show-more {text-align:center; border-bottom:1px double #CCC;}
+div.description_event .show-more i{margin:0 5px 0 0;}
+div.description_event .show-more a{
+	padding:5px 0 5px 0;
+	text-align:center; cursor:pointer;
+	width:100%; text-decoration:none;
+}
+
+.img_author_circular {text-align:center;}
+.img_author_circular img{
+	margin: 0 10px 0 0;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	border:1px solid #ccc;
+}
+
+
+ul.events_list{
+	list-style: none outside;
+	padding: 0;
+	margin: 0;
+}
+ul.events_list li {
+	padding: 10px 0;
+	margin: 0; 
+	list-style: none;
+}
+ul.events_list li a{
+display: block;  
+text-transform:uppercase;
+}
+.listevents  ul.events_list li span{
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+}
+
+.blockevents {width:100% ; position: relative;}
+
+.blockevents li a  {
+	width: 100%;
+    text-transform: uppercase;
+    font-size: 1em; height:90%;
+}
+.blockevents li {
+    position: relative; text-align:center;
+    float: left;
+    overflow: hidden;
+    width: 33.3333333%; /* Fallback */
+    width: -webkit-calc(100% / 3);
+    width: calc(100% / 3);
+}
+ 
+.blockevents li a,
+.blockevents li a img {
+
+    width: 100%;
+    cursor: pointer;
+}
+ 
+.blockevents li a img {
+    max-width: 100%;
+}
+.blockevents span {
+	margin: 0; 
+	padding: 5px; display:block; width:100%;  word-wrap: break-word;
+	border: 0; line-height:1em; height:20px;   text-overflow: ellipsis;
+	font-size:80%!important;  background-color:#FFF;
+}
+ 
+@media screen and (max-width: 400px) {
+    .blockevents li {
+        width: 50%; /* Fallback */
+        width: -webkit-calc(100% / 2);
+        width: calc(100% / 2);
+    }
+}
+ 
+@media screen and (max-width: 300px) {
+    .blockevents li {
+        width: 100%;
+    }
+}
+
+.listevents ul.events_list li a img {
+	float: right; height: auto;
+	width: 32px; 	margin-left: 4px;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+}
+.blockevents ul.events_list li a img {
+	width: 80%; 
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+}
+
+#eventissimo_images_container ul li{list-style:none; float:left; margin:10px; width:20%;}
+
+
+#eventissimo_images_container ul li img{
+	display: block;
+	width: 100%; max-width:100%;
+	height: auto;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-moz-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+	-webkit-transition: all ease-in-out .2s;
+	-moz-transition: all ease-in-out .2s;
+	-o-transition: all ease-in-out .2s;
+	transition: all ease-in-out .2s;
+}
+
+.eventsLoading {
+	width:100px; height:100px; display:none; position:absolute; top:50%; left:50%;
+	background:transparent url(../images/loading.gif) no-repeat center center;
+}

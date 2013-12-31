@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Eventissimo\n"
+"POT-Creation-Date: 2013-12-30 18:39+0100\n"
+"PO-Revision-Date: 2013-12-30 18:39+0100\n"
+"Last-Translator: Digitalissimo <simona@digitalissimo.it>\n"
+"Language-Team: Digitalissimo <simona@digitalissimo.it>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.7\n"
+"X-Poedit-KeywordsList: _e;__;_;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: G:\\Lavori\\Siti\\Personale\\agendaEventissimo\\wp-"
+"content\\plugins\\eventissimo\n"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:110
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:120
+msgid "Event types"
+msgstr "Tipi di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:111
+msgid "Event type"
+msgstr "Tipo di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:112
+msgid "Search Event types"
+msgstr "Cerca tipi di Eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:113
+msgid "All Event types"
+msgstr "Tutti i tipi di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:114
+msgid "Parent Event types"
+msgstr "Tipi di Evento Genitore"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:115
+msgid "Parent Event types:"
+msgstr "Tipi di Evento Genitore:"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:116
+msgid "Edit Event types"
+msgstr "Modifica tipo di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:117
+msgid "Update Event types"
+msgstr "Aggiorna tipo di evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:118
+msgid "Add New Event types"
+msgstr "Aggiungi nuovo tipo di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:119
+msgid "New Types Event types"
+msgstr "Nuovo tipo di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:135
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:145
+msgid "Event categories"
+msgstr "Categorie di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:136
+msgid "Event category"
+msgstr "Categoria di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:137
+msgid "Search Event categories"
+msgstr "Cerca categorie di Eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:138
+msgid "All Event categories"
+msgstr "Tutti le categorie di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:139
+msgid "Parent Event categories"
+msgstr "Categorie di evento Genitore"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:140
+msgid "Parent Event categories:"
+msgstr "Categorie di evento Genitore:"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:141
+msgid "Edit Event categories"
+msgstr "Modifica categorie di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:142
+msgid "Update Event categories"
+msgstr "Aggiorna categorie di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:143
+msgid "Add New Event categories"
+msgstr "Aggiungi nuova categorie di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:144
+msgid "New Event categories"
+msgstr "Nuova categoria di Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:171
+msgid "Events"
+msgstr "Eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:172
+msgid "Event"
+msgstr "Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:173
+msgid "Add new Event"
+msgstr "Aggiungi nuovo Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:174
+msgid "Edit Event"
+msgstr "Modifica Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:175
+msgid "New Event"
+msgstr "Nuovo Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:176
+msgid "View Event"
+msgstr "Vedi Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:177
+msgid "Search Event"
+msgstr "Cerca Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:178
+msgid "No events found."
+msgstr "Nessun evento trovato."
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:179
+msgid "No events found in Trash."
+msgstr "Nessun evento trovato nel cestino."
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:194
+msgid "Settings"
+msgstr "Configurazione"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:209
+msgid "Author"
+msgstr "Autore"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:212
+msgid "Date Event"
+msgstr "Data evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:213
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:39
+msgid "Location"
+msgstr "Luogo"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:249
+msgid "View all days repeat until"
+msgstr "Vedi tutte le date ripetute fino a"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:316
+msgid "en"
+msgstr "it"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:346
+msgid "Done"
+msgstr "Chiudi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:347
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function.php:337
+msgid "Today"
+msgstr "Oggi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:350
+msgid "Show a different month"
+msgstr "Vedi un mese differente"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:391
+msgid "Settings Plugin Eventissimo"
+msgstr "Configurazione Plugin Eventissimo"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:420
+msgid "Config map"
+msgstr "Configura mappa"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:430
+msgid "Location Default"
+msgstr "Luogo Default"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:435
+msgid "Address Default"
+msgstr "Indirizzo Default"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:444
+msgid "Zoom default"
+msgstr "Zoom default"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:446
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:60
+msgid "Update Maps"
+msgstr "Aggiorna mappa"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:458
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:87
+msgid "Move the placemark in the desired location on the map"
+msgstr "Sposta il segnaposto nella posizione desiderata sulla mappa"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:471
+msgid "Config Facebook"
+msgstr "Configura Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:474
+msgid "Create your App and get Id and Secret at"
+msgstr "Crea l'App ID e la chiave segreta su"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:485
+msgid "Your page Facebook"
+msgstr "La tua pagina di Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:489
+msgid "after https://www.facebook.com/"
+msgstr "dopo https://www.facebook.com/"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:496
+msgid "Autopublicate on facebook diary of the user  who creates the event?"
+msgstr "Autopubblica sul diario di facebook dell'utente che crea l'evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:506
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function.php:74
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:81
+msgid "Yes"
+msgstr "Si"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:510
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function.php:71
+msgid "No"
+msgstr "No"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:519
+msgid "App ID"
+msgstr "App ID"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:525
+msgid "App Secret"
+msgstr "App Secret"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:535
+msgid "Example pages App Facebook"
+msgstr "Esempio di pagina App di Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/eventissimo.php:574
+msgid "Facebook Cover"
+msgstr "Cover Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/frontend.php:38
+msgid "Go to first page"
+msgstr "Vai alla prima pagina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/frontend.php:40
+msgid "Go to previus page"
+msgstr "Vai alla prima pagina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/frontend.php:42
+msgid "Go to next page"
+msgstr "Vai appa prossima pagina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/frontend.php:44
+msgid "Go to last page"
+msgstr "Vai all'ultima pagina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/frontend.php:46
+msgid "Go to page"
+msgstr "Vai alla pagina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function.php:338
+msgid "Month"
+msgstr "Mese"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function.php:339
+msgid "Week"
+msgstr "Settimana"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function_fb.php:10
+msgid "Public"
+msgstr "Pubblico"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function_fb.php:11
+msgid "Invited only"
+msgstr "Solo su invito"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function_fb.php:12
+msgid "Friends of Guests"
+msgstr "Amici degli Ospiti"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/duplicatePost.php:8
+msgid "No events to duplicate has been supplied!"
+msgstr "Non è stato trovato nessun evento da duplicare!"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/duplicatePost.php:91
+msgid "Event creation failed, could not find original event:"
+msgstr ""
+"Creazione Evento fallito: non è stato possibile trovare l'evento originale:"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/duplicatePost.php:102
+msgid "Duplicate Event"
+msgstr "Duplica evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/duplicatePost.php:102
+msgid "Duplicate"
+msgstr "Duplica"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:5
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:10
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:22
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:239
+msgid "Calendar"
+msgstr "Calendario"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:21
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:73
+msgid "Title"
+msgstr "Titolo"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:32
+msgid "List of the next event"
+msgstr "Lista del prossimi eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:33
+msgid "Next Events"
+msgstr "Prossimi Eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:60
+msgid "List Events"
+msgstr "Lista eventi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:76
+msgid "Number"
+msgstr "Numero"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:79
+msgid "View Date"
+msgstr "Guarda le data"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/widget.php:82
+msgid "No (only title)"
+msgstr "No (solo titolo)"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/eventFB.php:21
+msgid "No title"
+msgstr "Nessun titolo"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/eventFB.php:43
+msgid "This event was generated by"
+msgstr "Questo evento è stato generato da"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/function/shortcode.php:26
+msgid "Invalid Shortcode"
+msgstr "Shortcode invalido"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/calendar.php:15
+msgid "no title"
+msgstr "Nessun titolo"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/calendar.php:44
+msgid "This events have not date repeat"
+msgstr "Questo evento non ha date ripetitive"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:51
+msgid "Edit"
+msgstr "Modifica"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:85
+msgid "{1} at {2} until {3} at {4}"
+msgstr "Dal {1} alle {2} fino al {3} alle {4}"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:93
+msgid "{1} until {2}"
+msgstr "Dal {1} fino al {2}"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:103
+msgid "{1}  {2} - {3}"
+msgstr "{1} dalle ore {2} alle ore {3} "
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:111
+msgid "Show More"
+msgstr "Visualizza altro"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:112
+msgid "Show Less"
+msgstr "Visualizza meno"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/pages/events-template-single.php:128
+msgid "More information"
+msgstr "Più informazioni"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:15
+msgid "Link & Social"
+msgstr "Link & Social"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:74
+msgid ""
+"Do you want to allow the plugin to create the event on FACEBOOK "
+"automatically?"
+msgstr ""
+"Vuoi permettere al plugin di creare l'evento su FACEBOOK automaticamente?"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:82
+msgid "This event will be updated automatically on Facebook"
+msgstr "L'evento sarà aggiornato automaticamente su Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:94
+msgid ""
+"If you would create the event on FACEBOOK automatically update your "
+"configuration of Facebook"
+msgstr ""
+"Se vuoi create l'evento su FACEBOOK automaticamente, aggiorna la "
+"configurazione di Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:96
+msgid "in this page."
+msgstr "in questa pagina."
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:107
+msgid "Link Event Facebook"
+msgstr "Link dell'evento su Facebook"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:116
+msgid "Another Link"
+msgstr "Altro link all'evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/facebook_events.php:200
+msgid "I have create a new event"
+msgstr "Ho creato un nuovo evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:10
+msgid "Gallery Images Event"
+msgstr "Galleria immagini Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:26
+msgid "Gallery"
+msgstr "Galleria"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:39
+msgid ""
+"These settings enable you to manage the gallery of this event. Upload your "
+"images and use \"Manage Images\" to edit, reorder and delete images."
+msgstr ""
+"Queste impostazioni consentono di gestire la galleria di questo evento. "
+"Carica le tue immagini e utilizza \"Gestione Immagini\" per modificare, "
+"riordinare e cancellare le immagini."
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:65
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:124
+msgid "Delete image"
+msgstr "Elimina Immagine"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:65
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:124
+msgid "Delete"
+msgstr "Elimina"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:76
+msgid "Add images"
+msgstr "Aggiungi  immagini"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:101
+msgid "Add Images to Gallery"
+msgstr "Add immagini alla galleria"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/images_events.php:103
+msgid "Add to gallery"
+msgstr "Aggiunti alla galleria"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:15
+msgid "Event Data"
+msgstr "Dati dell'evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:252
+msgid "Details"
+msgstr "Dettagli"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:261
+msgid "Date"
+msgstr "Data"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:265
+msgid "Begin"
+msgstr "Inizio"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:277
+msgid "End"
+msgstr "Fine"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:298
+msgid "Repeating event"
+msgstr "Evento ricorrente"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:300
+msgid "View all dates"
+msgstr "Guarda tutte le date"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:310
+msgid "Every year on the same day"
+msgstr "Ogni anno lo stesso giorno"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:318
+msgid "OR"
+msgstr "oppure"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:329
+msgid "Every"
+msgstr "Ogni"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:339
+msgid "of mounth"
+msgstr "del/dei mese/i"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:348
+msgid "All Month"
+msgstr "Tutti i mesi"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/data_events.php:364
+msgid "Until"
+msgstr "Fino a"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:15
+msgid "Event Location"
+msgstr "Luogo Evento"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:53
+msgid "City"
+msgstr "Città/Paese"
+
+#: G:\Lavori\Siti\Personale\agendaEventissimo\wp-content\plugins\eventissimo/meta_post/location_events.php:58
+msgid "Address"
+msgstr "Indirizzo"
+
+#~ msgid "Images"
+#~ msgstr "Immagini"
+
+#~ msgid "Created by"
+#~ msgstr "Creato da"
+
+#~ msgid "Who is the owner of event Facebook?"
+#~ msgstr "Chi è il proprietario dell'evento di Facebook?"
+
+#~ msgid "The user who creates the event"
+#~ msgstr "L'utente che ha creato l'evento"
+
+#~ msgid "The page written above"
+#~ msgstr "La pagina scritta sopra"
+
+#~ msgid "Diary of the user who creates the event"
+#~ msgstr "Diario dell'utente che ha creato l'evento"
+
+#~ msgid "Diary of the page written above"
+#~ msgstr "Diario della pagina scritto sopra"
+
+#~ msgid "None"
+#~ msgstr "Nessuno"
+
+#~ msgid "View"
+#~ msgstr "Visualizza"
+
+#~ msgid "Next"
+#~ msgstr "Prossimi"
+
+#~ msgid "All"
+#~ msgstr "Tutti"
+
+#~ msgid "Old"
+#~ msgstr "Vecchi"
+
+#~ msgid "Visit link"
+#~ msgstr "Visita il sito"
+
+#~ msgid "Maps"
+#~ msgstr "Configura Mappa"
+
+#~ msgid "Y/m/d"
+#~ msgstr "d/m/Y"
+
+#~ msgid "First"
+#~ msgstr "Prima"
+
+#~ msgid "Second"
+#~ msgstr "Seconda"
+
+#~ msgid "Third"
+#~ msgstr "Terza"
+
+#~ msgid "Fourth"
+#~ msgstr "Quarta"
+
+#~ msgid "Last"
+#~ msgstr "Ultima"
+
+#~ msgid "yy-mm-dd"
+#~ msgstr "dd/mm/yy"
+
+#~ msgid "Close"
+#~ msgstr "Chiudi"
+
+#~ msgid "Current"
+#~ msgstr "Corrente"
+
+#~ msgid "Preview"
+#~ msgstr "Precedente"
+
+#~ msgid "of the week"
+#~ msgstr "della settimana"
+
+#~ msgid "of"
+#~ msgstr "di"
+
+#~ msgid "Rules for repetition events"
+#~ msgstr "Regole per ripetizione eventi"
+
+#~ msgid "Rule for repetition events"
+#~ msgstr "Regola per ripetizione eventi"
+
+#~ msgid "Search Rules for repetition events"
+#~ msgstr "Cerca regole per ripetizione eventi"
+
+#~ msgid "All Rules for repetition events"
+#~ msgstr "Tutte le regole per ripezione eventi"
+
+#~ msgid "Parent Rules for repetition events"
+#~ msgstr "Regole di ripetizione evento genitore"
+
+#~ msgid "Parent Rules for repetition events:"
+#~ msgstr "Regoler per ripetizione evento genitore:"
+
+#~ msgid "Edit Rule for repetition events"
+#~ msgstr "Mofica Regola per ripetizione eventi"
+
+#~ msgid "Update Rule for repetition events"
+#~ msgstr "Aggiorni regola per ripezione eventi"
+
+#~ msgid "Add New Rule for repetition events"
+#~ msgstr "Aggiungi nuova regola per ripetizione eventi"
+
+#~ msgid "New Rule for repetition events"
+#~ msgstr "Nuova regola per ripetizione eventi"
+
+#~ msgid "Description"
+#~ msgstr "Descrizione"
+
+#~ msgid "Begin Hour"
+#~ msgstr "Ora di Inizio"
+
+#, fuzzy
+#~ msgid "New Types Event categories"
+#~ msgstr "Nuovo tipo di evento"
