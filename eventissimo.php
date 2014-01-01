@@ -3,7 +3,8 @@
 /*
 Plugin Name: Eventissimo
 Plugin URI: http://www.digitalissimo.it
-Description: Vedi i tuoi eventi.
+Description: Create and organize events into your site.
+Your events also automatically automatically created on Facebook.
 Version: 1.0.0
 Author: Digitalissimo
 Author URI: http://www.digitalissimo.it
@@ -89,7 +90,12 @@ function eventissimo_setting() {
 } 
 add_action( 'admin_init', 'eventissimo_setting');
 
+
+function eventissimo_install() {
+  flush_rewrite_rules();
+}
 function eventissimo_remove() {
+  flush_rewrite_rules();
   delete_option('wp_locationCityDefault');
   delete_option('wp_locationAdressDefault');
   delete_option('wp_locationPosition');
@@ -128,7 +134,6 @@ function create_eventissimo_taxonomies() {
 		'show_ui'           => true,
 		'show_admin_column' => true,
 		'query_var'         => true,
-		'rewrite'           => array( 'slug' => 'eventstype' ),
 	);
 
 	register_taxonomy( 'typeEvents', array( 'event' ), $args );
@@ -152,8 +157,7 @@ function create_eventissimo_taxonomies() {
 		'labels'            => $labels,
 		'show_ui'           => true,
 		'show_admin_column' => true,
-		'query_var'         => true,
-		'rewrite'           => array( 'slug' => 'eventscategories' ),
+		'query_var'         => true
 	);
 
 	register_taxonomy( 'eventscategories', array( 'event' ), $args );
