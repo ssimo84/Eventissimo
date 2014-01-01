@@ -1,12 +1,11 @@
 <?php
 if (isset($_POST["callAjax"])){
 	header("Access-Control-Allow-Origin: *");
+	
 	$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 	$url_include = $parse_uri[0] . 'wp-load.php';
-
 	if(@file_get_contents($url_include)){
-		require_once($url_include);
-		
+		require_once($url_include);	
 	}
 	require_once(BASE_URL . "/function.php");
 	$list = "";
@@ -14,11 +13,12 @@ if (isset($_POST["callAjax"])){
 	$post_per_page = isset($_POST["post_per_page"]) ? $_POST["post_per_page"] : 1;
 	$current = isset($_POST["current"]) ? $_POST["current"] : 1;
 	$dateview = isset($_POST["dateview"]) ? $_POST["dateview"] : FALSE;
+	$defined = $_POST["defined"];
 	$type = isset($_POST["type"]) ? $_POST["type"] : 'NEXT';
 	$paginate = isset($_POST["paginate"]) ? $_POST["paginate"] : FALSE;
 	if ($paginate) $number_page = 0;
 	else $number_page = $post_per_page;
-	$json = eventissimo_json_events($number_page,$type);
+	$json = eventissimo_json_events($number_page,$type,$defined);
 	$response = json_decode($json);
 }
 if ($paginate) {

@@ -10,7 +10,6 @@ function eventissimo_pageactual(){
 	$host     = $_SERVER['HTTP_HOST'];
 	$script   = $_SERVER['SCRIPT_NAME'];
 	$params   = $_SERVER['QUERY_STRING'];
-	 var_dump ($_POST);
 	$currentUrl = $protocol . '://' . $host . $script . '?' . $params;
 	 echo $currentUrl;
 	 die();
@@ -177,7 +176,7 @@ function eventissimo_msort($array, $key, $sort_flags = SORT_REGULAR) {
 }
 
 
-function eventissimo_json_events($post_per_page=0,$type='null'){
+function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 
 	$args = array( 'post_type' => 'events');
 	$args["post_per_page"] = -1;
@@ -232,32 +231,78 @@ function eventissimo_json_events($post_per_page=0,$type='null'){
 	$new_array = array();
 	$i=0;
 	
-	foreach($json_data as $event){
-		
-		if ($type=='NEXT'){
-			$dateB = $event["date_begin"];
-			$dateE = $event["date_end"];
-			if (($dateB==$dateE) && (time()>=$dateB))
-				continue;
-			if (($dateB!=$dateE)  && (time()<$dateB) && (time()>$dateE))
-				continue;
+	//IF DEFINED IS MONTH or TODAY
+
+	if (($defined=="MONTH") || ($defined=="TODAY")){
+		foreach($json_data as $event){
+			if ($defined=='TODAY'){
+				$dateB = $event["date_begin"];
+				$dateE = $event["date_end"];
+				if (($dateB==$dateE) && (time()!=$dateB))
+					continue;
+				if (($dateB!=$dateE) && (($dateE<time()) && ($dateE>time()))){
+					continue;
+				}
+			}
+			if ($defined=='MONTH'){
+				$dateB = $event["date_begin"];
+				$dateE = $event["date_end"];
+				$monthToday =  date('m Y', time());
+				$monthB = date('m Y',$dateB);
+				$monthE = date('m Y',$dateE);
+				if (($dateB==$dateE) && ($monthToday!=$monthB))
+					continue;
+				if (($dateB!=$dateE) && (($monthToday!=$monthB) && ($monthToday!=$monthE))){
+					continue;
+				}
+				
+			}
+			$new_array[$i]=	$event;
+			$i++;
+			
 		}
-		if ($type=='OLD'){
-			$dateB = $event["date_begin"];
-			$dateE = $event["date_end"];
-			if (($dateB==$dateE) && (time()<$dateB))
-				continue;
-			if (($dateB!=$dateE) && (time()>$dateB) && (time()<$dateE))
-				continue;
-		}
-		$new_array[$i]=	$event;
-		$i++;
-		if ($post_per_page>0){
-			if ($i>$post_per_page) break;
-		}	
-		$json_data = array();
 		$json_data = $new_array;
 	}
+
+	$i=0;
+	//NEXT or OLD
+	if (($type=="NEXT") || ($type=="OLD")){
+		$new_array = array();
+		foreach($json_data as $event){
+			if ($type=='NEXT'){
+				$dateB = $event["date_begin"];
+				$dateE = $event["date_end"];
+				if (($dateB==$dateE) && (time()>=$dateB))
+					continue;
+				if (($dateB!=$dateE)  && (time()<$dateB) && (time()>$dateE))
+					continue;
+			}
+			if ($type=='OLD'){
+				$dateB = $event["date_begin"];
+				$dateE = $event["date_end"];
+				if (($dateB==$dateE) && (time()<$dateB))
+					continue;
+				if (($dateB!=$dateE) && (time()>$dateB) && (time()<$dateE))
+					continue;
+			}
+			$new_array[$i]=	$event;
+			$i++;
+			
+		}
+		$json_data = $new_array;
+	}
+
+	if ($post_per_page>0){
+		$i=-1;
+		$new_array = array();
+		foreach($json_data as $event){
+			$i++;
+			if ($i==$post_per_page) break;
+			$new_array[$i]=	$event;
+		}
+		$json_data = $new_array;
+	}
+
 	return json_encode($json_data);
 }
 

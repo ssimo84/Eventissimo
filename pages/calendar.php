@@ -1,12 +1,15 @@
 <?php
-
 $parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
 $url_include = $parse_uri[0] . 'wp-load.php';
+if(@file_get_contents($url_include)){
+	require_once($url_include);	
+}
 global $wp, $wp_query, $wp_the_query, $wp_rewrite, $wp_did_header,$wp_locale;
 
-include($url_include);
+$dayRepeat = explode (",",$_GET["weekdayrepeat"]);
 
-if (is_array($_GET["weekdayrepeat"]))
+
+if (is_array($dayRepeat))
 	$arrayDay = getArrayDateRepeat($_GET["dataBegin"],$_GET["dataUntil"],$_GET["weekdayrepeat"],$_GET["monthdayrepeat"],$_GET["typeRepeating"]);
 else
 	$arrayDay = array(); 

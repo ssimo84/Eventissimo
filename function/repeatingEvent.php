@@ -28,14 +28,14 @@ function getArrayDateRepeat($date_begin,$date_end,$weekdayrepeat,$monthdayrepeat
 			}
 		}
 
-		return $get_month_days;
-	
+		
 		
 		/*for ($i=0; $i<count($get_month_days); $i++){
 			echo  date_i18n(get_option('date_format') , $get_week_days[$i]);
 		}*/
 		
-		
+		return $get_month_days;
+	
 	}
 	
 	

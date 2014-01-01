@@ -12,13 +12,13 @@ function eventissimo_frontend_calendar(){
 }
 
 
-function eventissimo_frontend_list($post_per_page,$dateview=FALSE,$type='NEXT',$paginate=FALSE,$view='LIST'){
-	
+function eventissimo_frontend_list($post_per_page,$dateview=FALSE,$type='NEXT',$paginate=FALSE,$view='LIST',$defined=''){
+
 	//type => next, prev, null (all events)
 	if ($paginate) $number_page = 0;
 	else $number_page = $post_per_page;
 
-	$json = eventissimo_json_events($number_page,$type);
+	$json = eventissimo_json_events($number_page,$type,$defined);
 	$response = json_decode($json);
 	if ($paginate) {
 		$count = count($response);
@@ -66,6 +66,7 @@ function eventissimo_frontend_list($post_per_page,$dateview=FALSE,$type='NEXT',$
 						post_per_page:' . $post_per_page  . ',
 						current:page,
 						dateview:' . $dateview  . ',
+						defined:"' . $defined  . '",
 						type:"' . $type  . '",
 						paginate:' . $paginate  . '
 					},

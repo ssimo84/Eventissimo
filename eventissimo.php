@@ -31,6 +31,7 @@ define("FACEBOOK_PUBLICATEFEEDFB",get_option("wp_publicatefeedFB"));
 define ("BASE_URL",dirname(__FILE__));
 define ("BASE_URI_IMAGES",plugins_url("images",__FILE__));
 define ("BASE_URL_NOIMAGES",plugins_url("images/no-image.png",__FILE__));
+define ("URL_FACEBOOK",plugins_url("plugin/facebook/sdk-facebook/facebook.php",__FILE__));
 include ("function/shortcode.php");
 include ("function/widget.php");
 include ("function/single_template.php");
@@ -240,10 +241,8 @@ function eventissimo_custom_column( $column, $post_id ) {
 						$typeRepeating = "manyDays";
 					}
 					
-					
 					$dayRepeatSelect =  implode(",",$dayRepeatDate);	
-					$dayRepeatMount = implode(",",$dayRepeatMon);
-					
+					$dayRepeatMount = implode(",",$dayRepeatMon);					
 					$util_repleat .= "<br/>";
 					$data_inizio = date_i18n("Y-m-d" ,get_post_meta( $post_id , 'data_inizio' , true ));
 					$util_repleat .= '<a href="javascript:void(0);" onClick="viewCalendarColorbox(\'' . $nameEvent . '\',\'' . $data_inizio . '\',\'' . $dataUntil . '\',\'' . $typeRepeating . '\',\'' . $dayRepeatSelect . '\',\'' . $dayRepeatMount . '\',\'\')">';
@@ -370,7 +369,7 @@ function eventissimo_install_jquery() {
 		wp_enqueue_style('eventsCss');
 		
 		
-		wp_register_style( 'eventsCss_faicon','//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
+		wp_register_style( 'eventsCss_faicon','http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
 		wp_enqueue_style('eventsCss_faicon');
 		
 	}

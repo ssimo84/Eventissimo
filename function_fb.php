@@ -50,7 +50,7 @@ function deleteEventsFacebook($idEvents){
 
 
 function accessFacebook($fileUpload=TRUE){
-	include_once(BASE_URL . "/plugin/facebook/sdk-facebook/facebook.php");
+	include_once(URL_FACEBOOK);
 	$facebook = new Facebook(array(
                 'appId'  => FACEBOOOK_API_KEY,
                 'secret' => FACEBOOK_SECRET_KEY,
