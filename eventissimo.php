@@ -3,8 +3,7 @@
 /*
 Plugin Name: Eventissimo
 Plugin URI: http://www.digitalissimo.it
-Description: Create and organize events into your site.
-Your events also automatically automatically created on Facebook.
+Description: Create and organize events into your site. Your events also automatically automatically created on Facebook.
 Version: 1.0.0
 Author: Digitalissimo
 Author URI: http://www.digitalissimo.it
@@ -16,7 +15,7 @@ License: GPLv2 or later
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
     published by the Free Software Foundation.
-.j
+	
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -160,11 +159,6 @@ function create_eventissimo_taxonomies() {
 	);
 
 	register_taxonomy( 'eventscategories', array( 'event' ), $args );
-	
-	
-	
-	
-	
 }
 
 //Post type
@@ -187,8 +181,6 @@ function eventissimo_post_type() {
 			'taxonomies' => array('typeEvents', 'eventscategories','rolesRepeatWeek'), 
 			'has_archive' => false,
 			'rewrite' => array('slug' => 'event'),
-	
-			'menu_position'=> 6,
 			'menu_icon' => plugins_url("/images/icon_menu.png",__FILE__),
 			'supports' => array('title','thumbnail')
 		)
@@ -483,16 +475,7 @@ function eventissimo_view_settings(){
                     <tr>
                     	<td width="50%">
                             <table>
-                                <tr valign="top">
-                                    <th scope="row">
-                                        <?php _e("Your page Facebook","eventissimo");?>
-                                        
-                                    </th>
-                                    <td><input type="text" id="fbuser" name="wp_fbUser" value="<?php echo get_option('wp_fbUser'); ?>" />
-                                     <br/><span class="description"><?php _e("after https://www.facebook.com/","eventissimo")?></span>
-                                    </td>
-                                    
-                                 </tr>
+                               
                                  
                                  <tr valign="top">
                                     <th scope="row">
