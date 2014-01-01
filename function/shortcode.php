@@ -1,7 +1,5 @@
 <?php
 /*
-Plugin Name: Eventissimo
-Plugin URI: http://www.digitalissimo.it
 Viewver Shortcode:
 1 - Calendar
 2 - List Events
