@@ -405,7 +405,7 @@ function eventissimo_view_settings(){
 				
 				jQuery("#updateMaps").click(function(){
 					var address = jQuery("#city").val() + " " + jQuery("#address").val();
-					getLangLat(address,jQuery("#latlongMaps").val(),jQuery("#zoom").val());
+					getLangLat(address,'',jQuery("#zoom").val());
 				});
 				
 				
