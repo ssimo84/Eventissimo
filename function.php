@@ -1,7 +1,5 @@
 <?php
 /*
-Plugin Name: Eventissimo
-Plugin URI: http://www.digitalissimo.it
 General Function Front-end and administration
 */
 function eventissimo_pageactual(){

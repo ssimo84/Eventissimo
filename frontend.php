@@ -1,7 +1,5 @@
 <?php
 /*
-Plugin Name: Eventissimo
-Plugin URI: http://www.digitalissimo.it
 Function plugin Frontend called from shortcode.php
 */
 
