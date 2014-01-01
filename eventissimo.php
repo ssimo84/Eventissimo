@@ -566,9 +566,6 @@ function eventissimo_delete_function($postid){
 
 add_action('before_delete_post', 'eventissimo_delete_function');
 
-
-
-
 function eventissimo_sizes_images() {
     add_image_size( 'fb_cover_image', 720, 300, true );
 }
