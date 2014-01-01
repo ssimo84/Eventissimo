@@ -39,7 +39,6 @@ include ("function/single_template.php");
 include ("frontend.php");
 include ("function.php");
 include ("function_fb.php");
-include ("pages.php");
 include ("meta_post/data_events.php");
 include ("meta_post/location_events.php");
 include ("meta_post/facebook_events.php");
