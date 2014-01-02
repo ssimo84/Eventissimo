@@ -9,8 +9,16 @@ function getArrayDateRepeat($date_begin,$date_end,$weekdayrepeat,$monthdayrepeat
 	if ($typeRepeating=="manyDays") {
 		// Loop upto the $no_of_days
 		//Loop  for  week days
-		$date_week = explode(",",$weekdayrepeat);
-		$date_month = explode(",",$monthdayrepeat);
+		if (!is_array($weekdayrepeat))
+			$date_week = explode(",",$weekdayrepeat);
+		else
+			$date_week = $weekdayrepeat;
+			
+		if (!is_array($monthdayrepeat))
+			$date_month = explode(",",$monthdayrepeat);
+		else
+			$date_month = $monthdayrepeat;
+			
 		for($i = 0; $i <= $no_of_days; $i++) {
 			$temp = date_i18n("D", $start_date);
 			if (in_array($temp,$date_week)) {

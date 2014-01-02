@@ -5,6 +5,10 @@
 	border-bottom:2px double #CCC; text-align:center;
 	width:100%; font-weight:bold;
 }
+div.events_category p{
+	font-size:80%; margin:0; padding:0 0 3px 0;
+}
+
 #maps{width: 100%;
 height: 300px;}
 #linkto_eventissimo {
@@ -18,6 +22,8 @@ margin:0 5px 0 0;
 #linkto_facebook i {
 margin:0 5px 0 0;
 }
+
+
  
 div.description_event .short-text {
     overflow: hidden;

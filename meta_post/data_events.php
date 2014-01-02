@@ -136,24 +136,7 @@ function eventissimo_eventData_field( $post ) {
 					jQuery('#untilRepeatDate').show();
 					jQuery('#updateDate').show();
 					jQuery('#EveryYear').val("true");
-					
-					var t = jQuery('#data_inizio').datepicker('getDate');
-					var dateBegin = jQuery.datepicker.formatDate('yy-mm-dd', t);
-					//Added 1 years
-					
-					jQuery.ajax({
-						url:   url_pathPlugin  + "function/addedDays.php",
-						dataType: "json",
-						data: {
-							dataBegin: dateBegin,
-							typeAdded: "+1 year"
-						},
-						type: "POST",
-						
-						success: function(response){
-							console.log(response);
-						},
-					});
+
 				} else {
 					jQuery('#repeatSelect').hide();
 					jQuery('.dayRepeatSelect').val("");
@@ -235,13 +218,39 @@ function eventissimo_eventData_field( $post ) {
 				
 				var t = jQuery('#untilRepeat').datepicker('getDate');
 				var dataUntil = jQuery.datepicker.formatDate('yy-mm-dd', t);
-				jQuery.colorbox({
-				  title:'<?php  _e("Calendar","eventissimo");?>',
-				  width:'80%',
-				  height:'95%',
-					iframe:true,
-				  href: url_pathPlugin  + 'pages/calendar.php?title=' + jQuery('#title').val() + '&dataBegin=' + dateBegin + '&dataUntil=' + dataUntil + '&typeRepeating=' + typeRepeating +'&weekdayrepeat=' + weekRepeat +  '&monthdayrepeat=' + monthRepeat + '&nweekdayrepeat=' +nweekRepeat
+				
+				
+				jQuery.ajax({
+					url:   admin_ajax,
+					type: "POST",
+					dataType: "html",
+					data: {
+						action: "eventissimo_calendar",
+						title: jQuery('#title').val(),
+						dataBegin: dateBegin,
+						dataUntil: dataUntil,
+						typeRepeating: typeRepeating,
+						weekdayrepeat: weekRepeat,
+						monthdayrepeat: monthRepeat,
+						nweekdayrepeat: nweekRepeat
+					},
+					success: function(response) {
+						jQuery.colorbox({
+							title:'<?php  _e("Calendar","eventissimo");?>',
+							html:response,
+							width:'80%',
+							height:'95%',
+							onComplete:function() {
+								callCalendar();
+							}
+						});
+					},
+					
+					error: function(response) {	
+						console.log(response);
+					}
 				});
+				
 			});
 			jQuery.noConflict();
 					
@@ -296,8 +305,9 @@ function eventissimo_eventData_field( $post ) {
             <thead>
                 <tr>
                     <td><h4><?php _e("Repeating event","eventissimo") ?> <input name="dayRepeat" id="chkRepeat" type="checkbox" <?php echo $checkedRepeat;?>/></h4></td>
-                
-                    <td align="center"><strong id="updateDate"><?php _e("View all dates","eventissimo") ?></strong></td>
+                </tr>
+                <tr>
+                    <td  align="center"><strong style="<?php echo $displayuntilRepeat2; ?>" id="updateDate"><?php _e("View all dates","eventissimo") ?></strong></td>
                 </tr>
             </thead>
             <tbody id="repeatSelect" style="<?php echo $displayuntilRepeat;?>">
@@ -362,7 +372,7 @@ function eventissimo_eventData_field( $post ) {
                             
                                 <td colspan="3">
                                     <?php _e("Until","eventissimo");?> 
-                                        <input type="text" name="untilRepeat" id="untilRepeat" value="<?php echo $untilRepeat; ?>"/>
+                                        <input type="text" readonly='true' name="untilRepeat" id="untilRepeat" value="<?php echo $untilRepeat; ?>"/>
                                 </td>
                             </tr>
                         </table>    

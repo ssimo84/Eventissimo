@@ -25,8 +25,10 @@ Multilanguage: English, Italian
 
 Use Widget for view events
 
-= Shortcode =
-*[eventissimo type='[CALENDAR|LIST|BLOCK]']*
+= SHORTCODE Calendar =
+*[eventissimo type='CALENDAR' backcolorHEX='[#069c88]']* :  backcolorHEX is backcolor of the event's title. Default is #069c88
+
+= SHORTCODE List or Block Event =
 *[eventissimo type='[LIST|BLOCK]' date='true' ]*: you view date of events
 *[eventissimo type='[LIST|BLOCK]' limit='#' ]*: you type a number for limit list event, default 10
 *[eventissimo type='[LIST|BLOCK]' paginate='true' ]*: you view events with pagination (events per page defined with limit number, if not defined number is 10).

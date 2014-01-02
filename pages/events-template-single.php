@@ -47,7 +47,42 @@ get_header(); ?>
                      
 						<?php } ?>
                     </h1>
-                    <div class="entry-meta">
+                    
+					
+					<div class='events_category'>
+					<?php
+					$types = wp_get_post_terms( $post_id, 'typeEvents'); 
+					
+					if (count($types)>0) {
+						echo "<p>" . __("Types","eventissimo") . ": ";
+						foreach ($types as $term) {
+							//Always check if it's an error before continuing. get_term_link() can be finicky sometimes
+							$term_link = get_term_link( $term, 'typeEvents' );
+							if( is_wp_error( $term_link ) )
+								continue;
+							//We successfully got a link. Print it out.
+							echo ' - <a href="' . $term_link . '">' . $term->name . '</a> ';
+						}
+						echo "</p>";
+					}
+					$categories = wp_get_post_terms( $post_id, 'eventscategories'); 
+					if (count($categories)){
+						echo "<p>" .  __("Category","eventissimo") . ": ";
+						foreach ($categories as $term) {
+							//Always check if it's an error before continuing. get_term_link() can be finicky sometimes
+							$term_link = get_term_link( $term, 'eventscategories' );
+							if( is_wp_error( $term_link ) )
+								continue;
+							//We successfully got a link. Print it out.
+							echo ' - <a href="' . $term_link . '">' . $term->name . '</a> ';
+						}
+						echo "</p>";
+					}
+					?>
+					</div>
+					
+					
+					<div class="entry-meta">
                         <span class="edit-link"><a class="post-edit-link" href="wp-admin/post.php?post=<?php echo $post_id;?>&amp;action=edit"><?php _e("Edit");?></a>
                         </span>		
                      </div><!-- .entry-meta -->

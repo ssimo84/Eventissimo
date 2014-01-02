@@ -32,6 +32,7 @@ define ("BASE_URL",dirname(__FILE__));
 define ("BASE_URI_IMAGES",plugins_url("images",__FILE__));
 define ("BASE_URL_NOIMAGES",plugins_url("images/no-image.png",__FILE__));
 define ("URL_FACEBOOK",plugins_url("plugin/facebook/sdk-facebook/facebook.php",__FILE__));
+
 include ("function/shortcode.php");
 include ("function/widget.php");
 include ("function/single_template.php");
@@ -45,10 +46,10 @@ include ("function/duplicatePost.php");
 include ("function/repeatingEvent.php");
 include ("function/eventFB.php");
 include ("meta_post/images_events.php");
-
+include ("call_function/listEvents.php");
+include ("call_function/calendar.php");
 
 load_plugin_textdomain( 'eventissimo', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-
 /* What to do when the plugin is activated? */
 register_activation_hook(__FILE__,'eventissimo_install');
 /* What to do when the plugin is deactivated? */
@@ -302,8 +303,8 @@ function eventissimo_install_jquery() {
 	
 	//Pagination
 	if (!is_admin()){
-		wp_enqueue_script( 'bootstrap-pagination', 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js');
-		wp_enqueue_style('bootstrap-style-pagination', 'http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css');
+		wp_enqueue_script( 'bootstrap-pagination',plugins_url('plugin/pagination/bootstrap.min.js', __FILE__));
+		wp_enqueue_style('bootstrap-style-pagination', plugins_url('plugin/pagination/bootstrap.css', __FILE__));
 		wp_enqueue_script( 'bootstrap-stype-pagination2', plugins_url('plugin/pagination/bootstrap-paginator.js', __FILE__));
 	}
 	
@@ -311,10 +312,10 @@ function eventissimo_install_jquery() {
 	wp_enqueue_script( 'jquery-apigoogle', 'http://maps.google.com/maps/api/js?sensor=true&amp;language=' . __("en","eventissimo"));
 	wp_enqueue_script( 'jquery-maps', plugins_url('plugin/maps/gmap3.min.js', __FILE__));
 
-	//DATE PICKER (JQUERY UI)	
-	wp_enqueue_script( 'jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js' );
-	wp_enqueue_style('jquery-style-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.css');
-	if (is_admin()){	
+	//JQUERY UI (FOR DATEPICKER)	
+	wp_enqueue_script('jquery-ui-datepicker');
+	wp_register_style('wimtvproCssCore',plugins_url('plugin/css/redmond/jquery-ui-1.8.21.custom.css', __FILE__));
+    wp_enqueue_style('wimtvproCssCore');if (is_admin()){	
 		//TIME PICKER
 		wp_enqueue_script( 'jquery-timepicker', plugins_url('plugin/timepicker/jquery.timepicker.js', __FILE__));
 		wp_enqueue_style('jquery-style-timepicker', plugins_url('plugin/timepicker/jquery.timepicker.css', __FILE__));
@@ -364,8 +365,8 @@ function eventissimo_install_jquery() {
 		wp_enqueue_style('eventsCss');
 		
 		
-		wp_register_style( 'eventsCss_faicon','http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css');
-		wp_enqueue_style('eventsCss_faicon');
+		wp_register_style( 'fontawesome', plugins_url('plugin/fontawesome/css/font-awesome.min.css', __FILE__) );
+		wp_enqueue_style('fontawesome');
 		
 	}
 }
@@ -374,6 +375,7 @@ function eventissimo_jsInline() {
 	var maxZoom ="' . get_option('wp_locationZoom') . '";
 	var iconMarker = "' . plugins_url("images/pin.png",__FILE__) . '";
 	var url_pathPlugin ="' . plugin_dir_url(__FILE__) . '";
+	var admin_ajax ="' . admin_url('admin-ajax.php') . '";
 	</script>';
 }
 add_action('wp_head', 'eventissimo_jsInline');

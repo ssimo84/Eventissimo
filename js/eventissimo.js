@@ -92,13 +92,42 @@ function getMaps(latLong,maxZoom){
 
 
 function viewCalendarColorbox(title,dateBegin,dataUntil,typeRepeating,weekRepeat,monthRepeat,nweekRepeat){
-	jQuery.colorbox({
-		title:title,
-		width:'80%',
-		height:'95%',
-		iframe:true,
-		href: url_pathPlugin  + 'pages/calendar.php?title=' + title + '&dataBegin=' + dateBegin + '&dataUntil=' + dataUntil + '&typeRepeating=' + typeRepeating +'&weekdayrepeat=' + weekRepeat +  '&monthdayrepeat=' + monthRepeat + '&nweekdayrepeat=' +nweekRepeat
+	event.preventDefault();
+	jQuery.ajax({
+		url:   admin_ajax,
+		type: "POST",
+		dataType: "html",
+		data: {
+			action: "eventissimo_calendar",
+			title: title,
+			dataBegin: dateBegin,
+			dataUntil: dataUntil,
+			typeRepeating: typeRepeating,
+			weekdayrepeat: weekRepeat,
+			monthdayrepeat: monthRepeat,
+			nweekdayrepeat: nweekRepeat
+		},
+
+		success: function(response) {
+			jQuery.colorbox({
+				title:title,
+				html:response,
+				width:'80%',
+				height:'95%',
+				onComplete:function() {
+					callCalendar();
+				}
+			});
+		},
+		
+		error: function(response) {	
+			console.log(response);
+		}
 	});
+
+	
+		//href: url_pathPlugin  + 'pages/calendar.php?title=' + title + '&dataBegin=' + dateBegin + '&dataUntil=' + dataUntil + '&typeRepeating=' + typeRepeating +'&weekdayrepeat=' + weekRepeat +  '&monthdayrepeat=' + monthRepeat + '&nweekdayrepeat=' +nweekRepeat
+
 }
 
 

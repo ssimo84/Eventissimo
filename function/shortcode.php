@@ -14,7 +14,9 @@ function eventissimo_shortcode($atts) {
 			'date'=>'false',
 			'paginate'=>'false',
 			'view'=>'',
-			'defined'=>''
+			'defined'=>'',
+			'backcolorHEX'=>'#069C88',
+			'textcolorHEX'=>'#FFFFFF'
 		), $atts);
 	
 	$type = strtoupper($sh_meta['type']);
@@ -23,12 +25,13 @@ function eventissimo_shortcode($atts) {
 	$defined = strtoupper($sh_meta['defined']);
 	$post_per_page = $sh_meta['limit'];
 	$view = strtoupper($sh_meta['view']);
-
+	$backcolorHEX = strtoupper($sh_meta['backcolorHEX']);
+	$textcolorHEX = strtoupper($sh_meta['textcolorHEX']);
 	if (($paginate==TRUE) && ($post_per_page=="")) $post_per_page=10;
 	
 	switch ($type){
 		case "CALENDAR":
-		  	return eventissimo_frontend_calendar();
+		  	return eventissimo_frontend_calendar($backcolorHEX,$textcolorHEX);
 		break;
 		case "LIST":
 		  	return eventissimo_frontend_list($post_per_page,$date,$view,$paginate,"LIST",$defined);

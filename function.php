@@ -9,8 +9,6 @@ function eventissimo_pageactual(){
 	$script   = $_SERVER['SCRIPT_NAME'];
 	$params   = $_SERVER['QUERY_STRING'];
 	$currentUrl = $protocol . '://' . $host . $script . '?' . $params;
-	 echo $currentUrl;
-	 die();
 	return $currentUrl;
 }
 
@@ -186,11 +184,15 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 	foreach ( $loop as $post ) : setup_postdata( $post ); 
 		$id_events = $post->ID;
 		$post_thumbnail_url = get_the_post_thumbnail( $id_events, "thumbnail");
+		$typeEvents = wp_get_post_terms( $id_events, 'typeEvents');
+		$eventscategories = wp_get_post_terms( $id_events, 'eventscategories');
 		$json_data[] = array(
 			"id" => 	$id_events,
 			"title" => 	$post->post_title,
 			"url" => get_permalink($id_events),	
-			"thumbs" => $post_thumbnail_url,				
+			"thumbs" => $post_thumbnail_url,
+			"types" => $typeEvents,	
+			"categories" => $eventscategories,					
 			//Date Is Timestamp
 			"date_begin" => get_post_meta($id_events, 'data_inizio', true)!="" ? get_post_meta($id_events, 'data_inizio', true) : "",
 			"date_end" => get_post_meta($id_events, 'data_fine', true)!="" ? get_post_meta($id_events, 'data_fine', true) : "",
@@ -238,7 +240,7 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 				$dateE = $event["date_end"];
 				if (($dateB==$dateE) && (time()!=$dateB))
 					continue;
-				if (($dateB!=$dateE) && (($dateE<time()) && ($dateE>time()))){
+				if (($dateB!=$dateE) && (($dateE<time()) && ($dateE<time()))){
 					continue;
 				}
 			}
@@ -270,18 +272,25 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 			if ($type=='NEXT'){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
-				if (($dateB==$dateE) && (time()>=$dateB))
+				
+				if (($dateB==$dateE) && (time()>$dateB))
 					continue;
-				if (($dateB!=$dateE)  && (time()<$dateB) && (time()>$dateE))
-					continue;
+					
+				if (($dateB!=$dateE) ) {
+					if (time()>$dateE) 
+						//echo $event["title"];
+						continue;
+				}
 			}
 			if ($type=='OLD'){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
 				if (($dateB==$dateE) && (time()<$dateB))
 					continue;
-				if (($dateB!=$dateE) && (time()>$dateB) && (time()<$dateE))
-					continue;
+				if (($dateB!=$dateE) ) {
+					if (time()<$dateB) 
+						continue;
+				}
 			}
 			$new_array[$i]=	$event;
 			$i++;
@@ -325,20 +334,18 @@ function eventissimo_json_events_fullcalendar($post_per_page=0){
 	
 }
 
-function eventissimo_stamp_calendar($array,$color,$type="month"){
+function eventissimo_stamp_calendar($array,$color,$textcolor="#FFFFFF",$type="month"){
 
 	global $wp_locale;
-	$script_calendar = "<script type='text/javascript'>
+		
+	$script_calendar = "<div id='calendar'></div>";
+	$script_calendar .= "<script type='text/javascript'>
 	
-		jQuery(function() {
-			
-			callCalendar();
-			
+	
 			function callCalendar(){
-	
+		
 				jQuery('#calendar').fullCalendar({
-					
-					
+
 					events: [";
 						foreach($array as $event){
 							$script_calendar .= "{";
@@ -369,7 +376,7 @@ function eventissimo_stamp_calendar($array,$color,$type="month"){
 							$script_calendar .= "'" . strtoupper($wd)  . "',";
 						}
 	$script_calendar .= "],
-				monthNamesShort:["; 
+					monthNamesShort:["; 
 						foreach ($wp_locale->month_abbrev as $wd){
 							$script_calendar .= "'" . strtoupper($wd)  . "',";
 						}
@@ -389,6 +396,7 @@ function eventissimo_stamp_calendar($array,$color,$type="month"){
 
 					},
 					 eventColor: '" . $color . "',
+					 eventTextColor: '" . $textcolor . "',
 					 height:350,
 					 defaultView:'month',
 					 eventRender: function(calev, elt, view) {
@@ -400,11 +408,9 @@ function eventissimo_stamp_calendar($array,$color,$type="month"){
 					 }
 				});
 			}
-			
-		});
-	</script>";
 	
-	$script_calendar .= "<div id='calendar'></div>";
+	</script>";
+
 	return $script_calendar;
 
 }
@@ -420,3 +426,4 @@ function eventissimo_paginate($data, $page = 1, $perPage = 2) {
    }
    return $new_data;
 }
+
