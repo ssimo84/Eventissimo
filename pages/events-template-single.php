@@ -191,9 +191,10 @@ get_header(); ?>
 								}); 
 								function switchClasses($content){
 									if($content.hasClass("short-text")){ 
-										$content.switchClass("short-text", "full-text", 400);
+										$content.addClass('full-text').removeClass('short-text');
+										
 									} else {
-										$content.switchClass("full-text", "short-text", 400);
+										$content.addClass('short-text').removeClass('full-text');
 									}
 								}
 								function getShowLinkText(currentText){

@@ -59,6 +59,7 @@ function getArrayDateRepeat($date_begin,$date_end,$weekdayrepeat,$monthdayrepeat
 				$get_years_days[] = $dateadded;
 			}
 		}
+
 		return $get_years_days;
 		
 	}

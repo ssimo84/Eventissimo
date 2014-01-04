@@ -423,9 +423,9 @@ function eventissimo_save_eventData()  {
 				}
 				
 				
-				if (count($arrayDayRepeat)>0) {
-					$arrayDay= getArrayDateRepeat($_POST["data_inizio_yy-mm-dd"],$_POST["untilRepeat_yy-mm-dd"],$arrayDayRepeat,$arrayMontRepeat,$typeRepeating);
-				}
+				
+				$arrayDay= getArrayDateRepeat($_POST["data_inizio_yy-mm-dd"],$_POST["untilRepeat_yy-mm-dd"],$arrayDayRepeat,$arrayMontRepeat,$typeRepeating);
+				
 				update_post_meta($post->ID, "allDateRepeat", serialize($arrayDay));
 			}
 			

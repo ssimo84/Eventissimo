@@ -199,9 +199,10 @@ function eventissimo_save_gallery($post_id) {
 	global $meta_box_eventissimo_images,$post;
 	if (isset($post->ID)) {
 		// Saving images from metabox
-		$attachment_ids = array_filter( explode( ',', eventissimo_clean( $_POST['eventissimo_image_gallery'] ) ) );
-		update_post_meta( $post_id, '_eventissimo_image_gallery', implode( ',', $attachment_ids ) );
-	 
+		if (isset($_POST['eventissimo_image_gallery'])){
+			$attachment_ids = array_filter( explode( ',', eventissimo_clean( $_POST['eventissimo_image_gallery'] ) ) );
+			update_post_meta( $post_id, '_eventissimo_image_gallery', implode( ',', $attachment_ids ) );
+		}
 		if ( isset($_POST['eventissimo_meta_box_nonce'])) {
 			// verify nonce
 			if (!wp_verify_nonce($_POST['eventissimo_meta_box_nonce'], basename(__FILE__))) {

@@ -28,7 +28,6 @@ function eventissimo_postCoverImage($url,$idevents){
 
 		try{ 
 			$result = $facebook->api('/' . $idevents , 'post', $attachment);
-			var_dump ($result);
 		}catch( Exception $e){
 			 echo "<div class='error'>Remove events: " . $e . "</div>";
 			 die();
@@ -48,13 +47,14 @@ function deleteEventsFacebook($idEvents){
 
 
 function accessFacebook($fileUpload=TRUE){
-	include_once(URL_FACEBOOK);
+	include_once(BASE_URL . "/plugin/facebook/sdk-facebook/facebook.php");
 	$facebook = new Facebook(array(
                 'appId'  => FACEBOOOK_API_KEY,
                 'secret' => FACEBOOK_SECRET_KEY,
 				 'cookie' => FALSE,
    				 'fileUpload' => $fileUpload
 				));
+
 	return $facebook;
 }
 
@@ -67,12 +67,12 @@ function  eventissimo_postEventFacebook($token,$url,$description,$title,$idUserP
     'name'=> $title,
     'caption'=>$url,
 	);
-	
-	
+
 	try{
 		$post = $facebook->api( '/' .  $idUserPages . '/feed','POST', $message);
+		
 	}catch( Exception $e){
-			return new WP_Error('eventissimo', "Post events: " . $e);
+			echo "Post events: " . $e;
 	}
 }
 

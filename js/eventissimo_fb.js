@@ -12,12 +12,12 @@ function checkFBStatus(){
 				oauth      : true,
 		});
 		
-		
 		FB.getLoginStatus(handleUserStateChange);
 		FB.Event.subscribe('auth.authResponseChange', handleUserStateChange);
 		
 		function handleUserStateChange(response) {
 			connected = !!response.authResponse;
+
 			if (response.status === 'connected') {
 			  getAPIFB();
 			} else if (response.status === 'not_authorized') {

@@ -2,15 +2,15 @@
 
 /*
 Plugin Name: Eventissimo
-Plugin URI: http://www.digitalissimo.it
+Plugin URI: http://plugin.digitalissimoweb.it/
 Description: Create and organize events into your site. Your events also automatically automatically created on Facebook.
-Version: 1.0.0
+Version: 1.1.1
 Author: Digitalissimo
 Author URI: http://www.digitalissimo.it
 License: GPLv2 or later
 */
 
-/*  Copyright 2013  Digitalissimo  (email : simona@digitalissimo.it)
+/*  Copyright 2013  Digitalissimo  (email : developer@digitalissimoweb.it)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -31,7 +31,6 @@ define("FACEBOOK_PUBLICATEFEEDFB",get_option("wp_publicatefeedFB"));
 define ("BASE_URL",dirname(__FILE__));
 define ("BASE_URI_IMAGES",plugins_url("images",__FILE__));
 define ("BASE_URL_NOIMAGES",plugins_url("images/no-image.png",__FILE__));
-define ("URL_FACEBOOK",plugins_url("plugin/facebook/sdk-facebook/facebook.php",__FILE__));
 
 include ("function/shortcode.php");
 include ("function/widget.php");
@@ -58,7 +57,7 @@ register_deactivation_hook( __FILE__, 'eventissimo_remove');
 function eventissimo_setting() {
   register_setting('eventissimo-group', 'wp_locationCityDefault');
   add_option( 'wp_locationCityDefault','Italy'); 
-  
+
   register_setting('eventissimo-group', 'wp_locationAdressDefault');
   add_option( 'wp_locationAdressDefault',''); 
   

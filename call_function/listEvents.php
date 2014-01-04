@@ -3,6 +3,7 @@
 function eventissimo_listEvent(&$list,$response,$post_per_page,$current,$dateview,$defined,$type,$paginate){
 	
 	if ($paginate) {
+
 		$new_array = eventissimo_paginate($response,$current,$post_per_page);
 		$response = array();
 		$response = $new_array;

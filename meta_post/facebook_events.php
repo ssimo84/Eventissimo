@@ -147,23 +147,51 @@ function eventissimo_save_eventFacebook()  {
 				$hourStart = $_POST["ora_inizio"];
 				$hourEnd = $_POST["ora_fine"];
 				
-				$createTimeZoneStart = new DateTime($dateStart, new DateTimeZone(get_option('timezone_string')));
-				$createTimeZoneEnd = new DateTime($dateEnd, new DateTimeZone(get_option('timezone_string')));
-	
-				$description = str_replace("\\","",$_POST["descrizione"]) . "\n\nPowered by " . get_site_url();
+				$dateStart = $_POST["data_inizio_yy-mm-dd"];
+
+				$dateEnd = $_POST["data_fine_yy-mm-dd"];
+
+				$hourStart = $_POST["ora_inizio"];
+
+				$hourEnd = $_POST["ora_fine"];
+
+				$offset= get_option('gmt_offset');	
 				
+				
+				$createTimeZoneStart = new DateTime($dateStart, new DateTimeZone(get_option('timezone_string')));
+
+				$createTimeZoneEnd = new DateTime($dateEnd, new DateTimeZone(get_option('timezone_string')));
+
+	
+
+				$description = str_replace("\\","",$_POST["descrizione"]) . "\n\nPowered by " . get_site_url();
+
+				
+
 				$offsetStart = $createTimeZoneStart->getOffset();
+
 				$offsetStart = eventissimo_offsetTime ($offsetStart);
+
 				$offsetEnd = $createTimeZoneEnd->getOffset();
+
 				$offsetEnd = eventissimo_offsetTime ($offsetEnd);
-				if ($hourStart !="")
+
+				if ($hourStart !=""){
+					$hourStart = date("H:i", strtotime($hourStart));
 					$start_event = $dateStart . "T" . $hourStart . ":00" . $offsetStart;
+				}
 				else
+
 					$start_event = $dateStart;
-				if ($hourEnd !="")
+
+				if ($hourEnd !=""){
+					$hourEnd = date("H:i", strtotime($hourEnd));
 					$end_event = $dateEnd . "T" . $hourEnd . ":00" . $offsetEnd;
+				}
 				else 
+
 					$end_event = $dateEnd;
+
 					
 				$city = $_POST["city"]!="" ? $_POST["city"] : "";
 				$address = $_POST["address"] !="" ? $_POST["address"] : "";
@@ -193,7 +221,7 @@ function eventissimo_onlyInsert($new_status, $old_status=null, $post) {
 	$pagesFacebookPrivateKey = get_option("wp_fbprivateKey");
 	if (($old_status === "auto-draft" || $old_status === "new" || $old_status === "inherit" || $old_status === "draft") && ($new_status == "publish")){
 		if ((isset($_POST["appTokenFb"])) && ($pagesFacebookAppId!="") && ($pagesFacebookPrivateKey!="")){
-			if (FACEBOOK_publicatefeedFB=="user"){
+			if (FACEBOOK_PUBLICATEFEEDFB=="user"){
 				$post_url = get_permalink($post->ID);
 				$title = $post->post_title;
 				$description = $_POST["descrizione"];

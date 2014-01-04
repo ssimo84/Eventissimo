@@ -36,7 +36,6 @@ function eventissimo_eventsConnectFacebook($title, $link, $description,$start_ti
 	if ($idevents==0){
 		try{
 			$result = $facebook->api('/' . $iduser . '/events?access_token=' . $token,'post',$eventInfo);
-			
 			//Post Link Site
 			$post_url = get_permalink($idPost);
 			$description = $description;
@@ -51,6 +50,7 @@ function eventissimo_eventsConnectFacebook($title, $link, $description,$start_ti
 		}catch( Exception $e){
 			
 			echo $e;
+
 		}
 		
 		
@@ -61,10 +61,7 @@ function eventissimo_eventsConnectFacebook($title, $link, $description,$start_ti
 			//Check title, adress change
 			
 			$apiCheck = "/" . $idevents . "/event?fields=name,location,description";
-			echo $apiCheck;
 			$result = $facebook->api($apiCheck);
-
-
 			if ($result["name"]==$eventInfo["name"]) unset ($eventInfo["name"]);
 			if ($result["description"]==$eventInfo["description"]) unset ($eventInfo["description"]);
 			if ($result["location"]==$eventInfo["location"]) {
@@ -78,7 +75,6 @@ function eventissimo_eventsConnectFacebook($title, $link, $description,$start_ti
 			return $result;
 		}catch( Exception $e){
 			echo $e;
-			die();
 		}
 	}
 }
