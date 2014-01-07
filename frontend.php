@@ -25,12 +25,15 @@ function eventissimo_frontend_cycle($limit,$view,$defined=''){
 	$response = json_decode($json);
 	$timestamp = rand(0,time());
 	ob_start();
-	$list = "<div class='slideEvent slide_events_" . $timestamp . "'><div class='cycle-slideshow' data-cycle-auto-height='16:9' data-cycle-caption-template='{{cycleTitle}}' data-cycle-caption='#adv-custom-caption_" . $timestamp . "'>";
-	$list .= "</div><div id='adv-custom-caption_" . $timestamp . "' class='div_caption_cycle'></div></div>";
-	$list .= "<script>";
-	$list .= "jQuery(function(){";
 	
-	if (count($response)>0){	
+	if (count($response)>0){
+		
+		$list = "<div class='slideEvent slide_events_" . $timestamp . "'><div class='cycle-slideshow' data-cycle-auto-height='16:9' data-cycle-caption-template='{{cycleTitle}}' data-cycle-caption='#adv-custom-caption_" . $timestamp . "'>";
+		$list .= "</div><div id='adv-custom-caption_" . $timestamp . "' class='div_caption_cycle'></div></div>";
+		$list .= "<script>";
+		$list .= "jQuery(function(){";
+	
+		
 		foreach ($response as $event){
 			$images = $event->cover!="" ? $event->cover : "<img src='" . BASE_URL_NOIMAGES_COVER . "' title='" . $event->title . "'>";
 			$list .= 'jQuery(".slide_events_' . $timestamp . ' div.cycle-slideshow").cycle(
@@ -41,7 +44,7 @@ function eventissimo_frontend_cycle($limit,$view,$defined=''){
 		$list .= "})";
 		$list .= "</script>";
 	}
-	$list = __("There are no events","eventissimo");
+	else $list = __("There are no events","eventissimo");
 	$output = ob_get_contents();
 	ob_end_clean();
 
