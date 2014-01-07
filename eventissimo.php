@@ -4,7 +4,7 @@
 Plugin Name: Eventissimo
 Plugin URI: http://plugin.digitalissimoweb.it/
 Description: Create and organize events into your site. Your events also automatically automatically created on Facebook.
-Version: 1.1.1
+Version: 1.2
 Author: Digitalissimo
 Author URI: http://www.digitalissimo.it
 License: GPLv2 or later
@@ -31,7 +31,7 @@ define("FACEBOOK_PUBLICATEFEEDFB",get_option("wp_publicatefeedFB"));
 define ("BASE_URL",dirname(__FILE__));
 define ("BASE_URI_IMAGES",plugins_url("images",__FILE__));
 define ("BASE_URL_NOIMAGES",plugins_url("images/no-image.png",__FILE__));
-
+define ("BASE_URL_NOIMAGES_COVER",plugins_url("images/no-image-cover.png",__FILE__));
 include ("function/shortcode.php");
 include ("function/widget.php");
 include ("function/single_template.php");
@@ -300,6 +300,12 @@ function eventissimo_install_jquery() {
 		wp_enqueue_script( 'jquery-eventissimoFB', plugins_url('js/eventissimo_fb.js', __FILE__));
 	}
 	
+	//Slideshow Cycle2
+	if (!is_admin()){
+		wp_enqueue_script('jquery');
+		wp_enqueue_script( 'jquery-cycle2', plugins_url('plugin/cycle/jquery.cycle2.min.js', __FILE__));
+		wp_enqueue_script( 'jquery-cycle2-autoheight', plugins_url('plugin/cycle/jquery.cycle2.autoheight.min.js', __FILE__));
+	}
 	//Pagination
 	if (!is_admin()){
 		wp_enqueue_script( 'bootstrap-pagination',plugins_url('plugin/pagination/bootstrap.min.js', __FILE__));

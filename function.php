@@ -173,17 +173,17 @@ function eventissimo_msort($array, $key, $sort_flags = SORT_REGULAR) {
 
 
 function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
-
 	$args = array( 'post_type' => 'events');
 	$args["post_per_page"] = -1;
 	$args["post_status"] = "publish";
 	$loop =  get_posts( $args );
-
+	
 	$json_data = array();
 	global $upload_dir;
 	foreach ( $loop as $post ) : setup_postdata( $post ); 
 		$id_events = $post->ID;
 		$post_thumbnail_url = get_the_post_thumbnail( $id_events, "thumbnail");
+		$post_cover_url = get_the_post_thumbnail( $id_events, "fb_cover_image");
 		$typeEvents = wp_get_post_terms( $id_events, 'typeEvents');
 		$eventscategories = wp_get_post_terms( $id_events, 'eventscategories');
 		$json_data[] = array(
@@ -191,6 +191,7 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 			"title" => 	$post->post_title,
 			"url" => get_permalink($id_events),	
 			"thumbs" => $post_thumbnail_url,
+			"cover" => $post_cover_url,
 			"types" => $typeEvents,	
 			"categories" => $eventscategories,					
 			//Date Is Timestamp
@@ -208,12 +209,19 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 		if (is_array($data_repeat)){
 			$i=0;
 			foreach ($data_repeat as $timestamp){
-				
+				$args = array(
+					'date_begin' => $timestamp, 
+					'date_end' =>  $timestamp
+				);
+				$args["hour_begin"] = get_post_meta($id_events, 'ora_inizio', true)!="" ? get_post_meta($id_events, 'ora_inizio', true) : "";
+				$args["hour_end"] = get_post_meta($id_events, 'ora_fine', true)!="" ? get_post_meta($id_events, 'ora_fine', true) : "";
+				$url = add_query_arg( $args, get_permalink($id_events));
 				$json_data[] = array(
 						"id" => 	$id_events . "-" . $i,
 						"title" => 	$post->post_title,
-						"url" => get_permalink($id_events),
-						"thumbs" => $post_thumbnail_url,	
+						"url" => $url,
+						"thumbs" => $post_thumbnail_url,
+						"cover" => $post_cover_url,
 								//Date Is Timestamp
 						"date_begin" => $timestamp,
 						"date_end" => $timestamp,
@@ -349,7 +357,7 @@ function eventissimo_stamp_calendar($array,$color,$textcolor="#FFFFFF",$type="mo
 					events: [";
 						foreach($array as $event){
 							$script_calendar .= "{";
-							$script_calendar .= "'title':'" . $event["title"] . "',";
+							$script_calendar .= "'title':'" . addslashes ($event["title"]) . "',";
 							$script_calendar .= "'start':'" . $event["start"] . "',";
 							$script_calendar .= "'end':'" . $event["end"] . "',";
 							if (isset($event["url"]))

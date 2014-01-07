@@ -16,10 +16,10 @@ get_header(); ?>
 				$post_id = get_the_ID();
 				
 				//dal  ore  al ore
-				$data_begin = get_post_meta($post_id, 'data_inizio', true)!="" ? get_post_meta($post_id, 'data_inizio', true) : "";
-				$data_end = get_post_meta($post_id, 'data_fine', true)!="" ? get_post_meta($post_id, 'data_fine', true) : "";
-				$hour_begin = get_post_meta($post_id, 'ora_inizio', true)!="" ? get_post_meta($post_id, 'ora_inizio', true) : "";
-				$hour_end = get_post_meta($post_id, 'ora_fine', true)!="" ? get_post_meta($post_id, 'ora_fine', true) : "";
+				$data_begin = !isset($_GET["date_begin"])  ? get_post_meta($post_id, 'data_inizio', true) : $_GET["date_begin"];
+				$data_end = !isset($_GET["date_end"])  ? get_post_meta($post_id, 'data_inizio', true) : $_GET["date_end"];
+				$hour_begin = !isset($_GET["hour_begin"])  ? get_post_meta($post_id, 'ora_inizio', true) : $_GET["hour_begin"];
+				$hour_end = !isset($_GET["hour_end"])  ? get_post_meta($post_id, 'ora_fine', true) : $_GET["hour_end"];
 				$city = get_post_meta( $post_id , 'city' , true )!="" ? get_post_meta( $post_id , 'city' , true ) : "";
 				$address = get_post_meta( $post_id , 'address' , true )!="" ? get_post_meta( $post_id , 'address' , true ) : "";
 				$latlong = get_post_meta( $post_id , 'latlongMaps' , true )!="" ? get_post_meta( $post_id , 'latlongMaps' , true ) : "";

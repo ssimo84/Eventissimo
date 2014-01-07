@@ -8,31 +8,34 @@ function eventissimo_listEvent(&$list,$response,$post_per_page,$current,$datevie
 		$response = array();
 		$response = $new_array;
 	}
-	$list .= "<ul class='events_list'>";
-	foreach ($response as $event){
-		$list  .= "<li>";
-		$list .= "<a href='" . $event->url . "'>" . $event->title;
-		
-		$list .= $event->thumbs!="" ? $event->thumbs : "<img src='" . BASE_URL_NOIMAGES . "' title='" . $event->title . "'>";
-		
-		$list .= "</a>";
-		if ($dateview){
-			$list .= "<span>";
-			$list .= date_i18n(get_option('date_format'),$event->date_begin) . " " . $event->hour_begin;
-			$list .= "-";	
-			if ($event->date_begin!=$event->date_end)
-				$list .=  date_i18n(get_option('date_format'),$event->date_end);
-			$list .= " " .$event->hour_end;
+	if (count($response)>0){
+		$list .= "<ul class='events_list'>";
+		foreach ($response as $event){
+			$list  .= "<li>";
+			$list .= "<a href='" . $event->url . "'>" . $event->title;
 			
-			$list .= "</span>";
-		
-		}
-
-		$list .= "</li>";
-	}
+			$list .= $event->thumbs!="" ? $event->thumbs : "<img src='" . BASE_URL_NOIMAGES . "' title='" . $event->title . "'>";
+			
+			$list .= "</a>";
+			if ($dateview){
+				$list .= "<span>";
+				$list .= date_i18n(get_option('date_format'),$event->date_begin) . " " . $event->hour_begin;
+				$list .= "-";	
+				if ($event->date_begin!=$event->date_end)
+					$list .=  date_i18n(get_option('date_format'),$event->date_end);
+				$list .= " " .$event->hour_end;
+				
+				$list .= "</span>";
+			
+			}
 	
-	$list .= "</ul>";
-
+			$list .= "</li>";
+		}
+	
+		$list .= "</ul>";
+	} else {
+		$list = __("There are no events","eventissimo");
+	}
 	return $list;
 }
 

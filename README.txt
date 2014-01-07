@@ -1,10 +1,10 @@
 === Eventissimo ===
 Contributors: Digitalissimo
-Tags: events, event, calendar, facebook
+Tags: events, event, calendar, facebook, shortcode, widget
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UXV6CWADKJQ5A
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,9 @@ Use Widget for view events
 *  `[eventissimo type='[LIST|BLOCK]' view='[OLD|NEXT]']`: you defined past events or next events, Default is NEXT
 *  `[eventissimo type='[LIST|BLOCK]' defined='TODAY|MONTH']`: you defined today events or all events of current month. MONTH combined with view NEXT lets you see only next events.
 
+= SHORTCODE SlideShow =
+*  `[eventissimo type='CYCLE' view='[OLD|NEXT]' defined='TODAY|MONTH']`
+
 = Facebook =
 To automate the creation of an event on facebook you have to register as a developer on facebook, create an APP and to recove id and privat key of APP.
 
@@ -54,3 +57,5 @@ To automate the creation of an event on facebook you have to register as a devel
 * Correct Bug Bootstrap
 = 1.1.1 =
 * Correct Bugs css and Facebook
+= 1.2 =
+* Correct Bugs Link Events, added Slideshow events

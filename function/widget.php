@@ -14,7 +14,6 @@ class eventissimo_listevents extends WP_Widget {
 		$dateview = apply_filters( 'eventissimo_list', $instance['dateview'], $instance );
         $filter = apply_filters( 'eventissimo_list', $instance['filter'], $instance );
         $dateview = (strtoupper($dateview)=="FALSE")?FALSE:TRUE;
-		echo $before_widget;
         if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
 		echo  eventissimo_frontend_list($num,$dateview,'NEXT',FALSE,'LIST',$filter);
@@ -50,10 +49,7 @@ class eventissimo_listevents extends WP_Widget {
         	$filter = apply_filters( 'eventissimo_list' , $instance['filter'] );
 		else
 			$filter = "";
-		
-		
-        ?>
-        
+        ?>      
 		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e("Title");?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 
@@ -95,7 +91,6 @@ class eventissimo_taxonomy extends WP_Widget {
         $title = apply_filters( 'eventissimo_taxonomy' , $instance['title'] );
 		$numview = apply_filters( 'eventissimo_taxonomy', $instance['numview'], $instance );
         $type = apply_filters( 'eventissimo_taxonomy', $instance['type'], $instance );
-        echo $before_widget;
         if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
 			echo eventissimo_frontend_taxonomy($numview,$type);

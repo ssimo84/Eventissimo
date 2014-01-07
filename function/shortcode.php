@@ -39,6 +39,9 @@ function eventissimo_shortcode($atts) {
 		case "BLOCK":
 		  	return eventissimo_frontend_list($post_per_page,$date,$view,$paginate,"BLOCK",$defined);
 		break;
+		case "CYCLE":
+		  	return eventissimo_frontend_cycle($post_per_page,$view,$defined);
+		break;
 		default:
 			return __("Invalid Shortcode","eventissimo");	
 	}

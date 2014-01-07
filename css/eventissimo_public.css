@@ -156,3 +156,10 @@ vertical-align: baseline;
 	width:100px; height:100px; display:none; position:absolute; top:50%; left:50%;
 	background:transparent url(../images/loading.gif) no-repeat center center;
 }
+
+.slideEvent {width:100%; text-align:center;position:relative}
+.slideEvent .cycle-slideshow {margin:0 auto;}
+.slideEvent .div_caption_cycle{
+	position:absolute; z-index:100; top:0; 
+	background-color: #FFF; padding:3px; margin:2px;
+}
