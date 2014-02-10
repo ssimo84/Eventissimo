@@ -2,15 +2,15 @@
 
 /*
 Plugin Name: Eventissimo
-Plugin URI: http://plugin.digitalissimoweb.it/
+Plugin URI: http://plugin.digitalissimoweb.it/eventissimo/
 Description: Create and organize events into your site. Your events also automatically automatically created on Facebook.
-Version: 1.2
+Version: 1.3.5
 Author: Digitalissimo
-Author URI: http://www.digitalissimo.it
+Author URI: http://plugin.digitalissimoweb.it
 License: GPLv2 or later
 */
 
-/*  Copyright 2013  Digitalissimo  (email : developer@digitalissimoweb.it)
+/*  Copyright 2014  Digitalissimo  (email : developer@digitalissimoweb.it)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -38,6 +38,7 @@ include ("function/single_template.php");
 include ("frontend.php");
 include ("function.php");
 include ("function_fb.php");
+include ("backend.php");
 include ("meta_post/data_events.php");
 include ("meta_post/location_events.php");
 include ("meta_post/facebook_events.php");
@@ -49,6 +50,9 @@ include ("call_function/listEvents.php");
 include ("call_function/calendar.php");
 
 load_plugin_textdomain( 'eventissimo', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
+
+
 /* What to do when the plugin is activated? */
 register_activation_hook(__FILE__,'eventissimo_install');
 /* What to do when the plugin is deactivated? */
@@ -85,6 +89,11 @@ function eventissimo_setting() {
   register_setting('eventissimo-group', 'wp_ownerEventFB');
   add_option( 'wp_ownerEventFB','user');
   
+  register_setting('eventissimo-group', 'UseSingleTemplateDefault');
+  add_option( 'UseSingleTemplateDefault','YES');
+  
+  register_setting('eventissimo-group', 'wp_order_singleevent');
+  add_option( 'wp_order_singleevent','evidenceimg,title,category,author,date,description,gallery,maps');
 } 
 add_action( 'admin_init', 'eventissimo_setting');
 
@@ -105,6 +114,9 @@ function eventissimo_remove() {
   
   delete_option('wp_publicatefeedFB');
   delete_option('wp_ownerEventFB');
+  
+  delete_option('UseSingleTemplateDefault');
+  delete_option('wp_order_singleevent');
 
 }
 
@@ -189,6 +201,9 @@ function eventissimo_post_type() {
 
 function events_menu(){
     add_submenu_page( 'edit.php?post_type=events', __("Settings","eventissimo"), __("Settings","eventissimo"), 'manage_options', 'eventissimo_setting', 'eventissimo_view_settings' );
+	
+	add_submenu_page( 'edit.php?post_type=events', __("Import FB events","eventissimo"), __("Import FB events","eventissimo"), 'publish_posts', 'eventissimo_fbupdating', 'eventissimo_fbupdating' );
+	
 }
 add_action( 'admin_menu', 'events_menu' );
 
@@ -319,8 +334,13 @@ function eventissimo_install_jquery() {
 
 	//JQUERY UI (FOR DATEPICKER)	
 	wp_enqueue_script('jquery-ui-datepicker');
+	wp_enqueue_script('jquery-ui-sortable');
 	wp_register_style('wimtvproCssCore',plugins_url('plugin/css/redmond/jquery-ui-1.8.21.custom.css', __FILE__));
-    wp_enqueue_style('wimtvproCssCore');if (is_admin()){	
+    wp_enqueue_style('wimtvproCssCore');
+	
+	wp_enqueue_script( 'jquery-sortableFixed', plugins_url('js/fixedSortable.js', __FILE__));
+	
+	if (is_admin()){	
 		//TIME PICKER
 		wp_enqueue_script( 'jquery-timepicker', plugins_url('plugin/timepicker/jquery.timepicker.js', __FILE__));
 		wp_enqueue_style('jquery-style-timepicker', plugins_url('plugin/timepicker/jquery.timepicker.css', __FILE__));
@@ -337,13 +357,16 @@ function eventissimo_install_jquery() {
 		wp_enqueue_style('jquery-style-fullcalendar', plugins_url('plugin/calendarajax/fullcalendar.css', __FILE__));
 	else
 		wp_enqueue_style('jquery-style-fullcalendar', plugins_url('plugin/calendarajax/fullcalendar.css', __FILE__));
-			
+	
+	
+		
     //add our instantiator js
 	if (is_admin()){
-		wp_enqueue_script( 'jquery-eventissimo-admin', plugins_url('js/dateL10n.js', __FILE__));
+		if ($_GET["page"]!="eventissimo_fbupdating"){
+			wp_enqueue_script( 'jquery-eventissimo-admin', plugins_url('js/dateL10n.js', __FILE__));
 
-		//localize our js
-		$aryArgs = array(
+			//localize our js
+			$aryArgs = array(
 			'closeText'         => __( 'Done', 'eventissimo'),
 			'currentText'       => __( 'Today', 'eventissimo'),
 			'monthNames'        => eventissimo_strip_array_indices( $wp_locale->month ),
@@ -355,10 +378,11 @@ function eventissimo_install_jquery() {
 			// set the date format to match the WP general date settings
 			'dateFormat'        => eventissimo_date_format_wp_to_js( get_option( 'date_format' ) ),
 			'timeFormat'        => eventissimo_time_format_wp_to_js( get_option( 'time_format' ) ),
-		);
+			);
  
-		// Pass the array to the enqueued JS
-		wp_localize_script( 'jquery-eventissimo-admin', 'objectL10n', $aryArgs );
+			// Pass the array to the enqueued JS
+			wp_localize_script( 'jquery-eventissimo-admin', 'objectL10n', $aryArgs );
+		}
 	}
 	
 	//EVENTISSIMO STYLE
@@ -415,6 +439,16 @@ function eventissimo_view_settings(){
 					getLangLat(address,'',jQuery("#zoom").val());
 				});
 				
+    			jQuery( "#sortable" ).sortable({
+					deactivate: function( event, ui ) {
+						sortedIDs=jQuery( "#sortable" ).sortable("toArray");
+						console.log(sortedIDs);
+						jQuery("#wp_order_singleevent").val(sortedIDs);
+					}
+				});
+				
+
+
 				
 			});
 		</script>
@@ -469,7 +503,62 @@ function eventissimo_view_settings(){
 						
                     </table>
            
-
+           <h3><?php _e("Single Events Configuration","eventissimo")?></h3>
+		   
+           <table class="form-table">
+                    
+                    <tr>
+                    	<td width="50%">
+                        	<label><?php _e("Use Single Template Default of Plugin","eventissimo")?></label>
+                       		
+                        <?php
+                        	$usesingle =get_option('UseSingleTemplateDefault');
+                        ?>
+                            <select name="UseSingleTemplateDefault">
+                                <option value="YES" <?php 
+                                if ($usesingle=="YES") echo "selected='selected'";
+                                ?>><?php echo __("Yes","eventissimo")?></option>
+                                
+                                 <option value="NO" <?php 
+                                if ($usesingle=="NO") echo "selected='selected'";
+                                ?>><?php echo __("No","eventissimo")?></option>
+                              </select>
+                              
+                              <p><?php _e("If you do not use the default page of the plugin creates single-events.php in the theme directory and copy this php code","eventissimo");?></p>
+							<code>$orders_single= explode(",",get_option('wp_order_singleevent'));</code><br/>
+                            <code>while ( have_posts() ) : the_post();</code><br/>							
+                            <code>eventissimo_get_template_single($orders_single);</code><br/>
+                           
+                            <code>endwhile;</code><br/>
+                              
+						</td>
+                    </tr>
+                    <tr>    
+                        <td width="100%">
+                       	 <label><?php _e("Change order of arrangement of the elements of the page","eventissimo")?> (single-events.php)</label>
+                         <input type="hidden" value="<?php echo get_option('wp_order_singleevent');?>" id="wp_order_singleevent" name="wp_order_singleevent">;
+                         <ul id="sortable">
+                         <?php
+						 	$orderArray = explode(",",get_option('wp_order_singleevent'));
+							foreach ($orderArray as $key){
+								
+								if ($key=="description")
+									$key = __("Description","eventissimo");
+								elseif ($key=="maps")
+									$key = __("Maps","eventissimo");
+								elseif ($key=="evidenceimg")
+									$key = __("Cover image","eventissimo");
+								else
+									$key = __(ucfirst($key),"eventissimo");
+								
+								echo "<li id='" . $key . "' class='ui-state-default'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>" . __(ucfirst($key),"eventissimo") . "</li>";
+							}
+						 ?>
+                         
+                        </ul></td>
+                        
+                    </tr>
+				</table>
             <h3><?php _e("Config Facebook","eventissimo")?></h3>
             
             <p>

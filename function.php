@@ -172,7 +172,7 @@ function eventissimo_msort($array, $key, $sort_flags = SORT_REGULAR) {
 }
 
 
-function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
+function eventissimo_json_events($post_per_page=0,$type='null',$defined="",$order="ASC"){
 	$args = array( 'post_type' => 'events');
 	$args["post_per_page"] = -1;
 	$args["post_status"] = "publish";
@@ -184,18 +184,24 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 		$id_events = $post->ID;
 		$post_thumbnail_url = get_the_post_thumbnail( $id_events, "thumbnail");
 		$post_cover_url = get_the_post_thumbnail( $id_events, "fb_cover_image");
+		$post_large_url = get_the_post_thumbnail( $id_events, "large");
 		$typeEvents = wp_get_post_terms( $id_events, 'typeEvents');
 		$eventscategories = wp_get_post_terms( $id_events, 'eventscategories');
+		$dataBegin = get_post_meta($id_events, 'data_inizio', true)!="" ? get_post_meta($id_events, 'data_inizio', true) : "";
 		$json_data[] = array(
 			"id" => 	$id_events,
+			"classname" => 	$id_events,
+			"randomColor" => 	get_post_meta($id_events, 'colorRandom', true),
+			"id_author" => 	$post->post_author,
 			"title" => 	$post->post_title,
 			"url" => get_permalink($id_events),	
 			"thumbs" => $post_thumbnail_url,
 			"cover" => $post_cover_url,
+			"coverBig" => $post_large_url,
 			"types" => $typeEvents,	
 			"categories" => $eventscategories,					
 			//Date Is Timestamp
-			"date_begin" => get_post_meta($id_events, 'data_inizio', true)!="" ? get_post_meta($id_events, 'data_inizio', true) : "",
+			"date_begin" => $dataBegin,
 			"date_end" => get_post_meta($id_events, 'data_fine', true)!="" ? get_post_meta($id_events, 'data_fine', true) : "",
 			//Hour
 			"hour_begin" => get_post_meta($id_events, 'ora_inizio', true)!="" ? get_post_meta($id_events, 'ora_inizio', true) : "",
@@ -216,12 +222,17 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 				$args["hour_begin"] = get_post_meta($id_events, 'ora_inizio', true)!="" ? get_post_meta($id_events, 'ora_inizio', true) : "";
 				$args["hour_end"] = get_post_meta($id_events, 'ora_fine', true)!="" ? get_post_meta($id_events, 'ora_fine', true) : "";
 				$url = add_query_arg( $args, get_permalink($id_events));
-				$json_data[] = array(
+				if ($dataBegin!=$timestamp) {
+					$json_data[] = array(
 						"id" => 	$id_events . "-" . $i,
+						"classname" => 	$id_events,
 						"title" => 	$post->post_title,
 						"url" => $url,
+						"randomColor" => 	get_post_meta($id_events, 'colorRandom', true),
+						"id_author" => 	$post->post_author,
 						"thumbs" => $post_thumbnail_url,
 						"cover" => $post_cover_url,
+						"coverBig" => $post_large_url,
 								//Date Is Timestamp
 						"date_begin" => $timestamp,
 						"date_end" => $timestamp,
@@ -229,49 +240,72 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 						"hour_begin" => get_post_meta($id_events, 'ora_inizio', true)!="" ? get_post_meta($id_events, 'ora_inizio', true) : "",
 						"hour_end" => get_post_meta($id_events, 'ora_fine', true)!="" ? get_post_meta($id_events, 'ora_fine', true) : "",
 					);
-				$i++;
+					$i++;
+				}
 			}
 		}	
 		
 	endforeach;
 	$json_data = eventissimo_msort($json_data, array('date_begin'));
-
+	if ($order=="DESC")
+		$json_data = array_reverse($json_data);
+	
 	$new_array = array();
 	$i=0;
 	
 	//IF DEFINED IS MONTH or TODAY
-
-	if (($defined=="MONTH") || ($defined=="TODAY")){
+	$timestampOnlyDMY = strtotime(date("Y-m-d"));
+	if ((($defined=="MONTH") || ($defined=="TODAY")) || (eventissimo_isValidTimeStamp($defined)) ){
 		foreach($json_data as $event){
+			
+			$data_begin1 = date_i18n(get_option('date_format'),$event["date_begin"]);
+			$data_today1 = date_i18n(get_option('date_format'),$timestampOnlyDMY );
+			$data_end1 = date_i18n(get_option('date_format'),$event["date_end"]);
+	
 			if ($defined=='TODAY'){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
-				if (($dateB==$dateE) && (time()!=$dateB))
+			
+				if (($dateB==$dateE) && ($data_today1!=$data_begin1))
 					continue;
-				if (($dateB!=$dateE) && (($dateE<time()) && ($dateE<time()))){
+				if (($dateB!=$dateE) && ($timestampOnlyDMY>$dateE)){
 					continue;
 				}
 			}
+			
+			if (eventissimo_isValidTimeStamp($defined)){
+				$data_today1 = date_i18n(get_option('date_format'),$defined );
+				$dateB = $event["date_begin"];
+				$dateE = $event["date_end"];
+			
+				if (($dateB==$dateE) && ($data_today1!=$data_begin1))
+					continue;
+				if (($dateB!=$dateE) && ($defined>$dateE)){
+					continue;
+				}
+			}
+			
 			if ($defined=='MONTH'){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
 				$monthToday =  date('m Y', time());
 				$monthB = date('m Y',$dateB);
 				$monthE = date('m Y',$dateE);
-				if (($dateB==$dateE) && ($monthToday!=$monthB))
-					continue;
-				if (($dateB!=$dateE) && (($monthToday!=$monthB) && ($monthToday!=$monthE))){
+				if (($monthToday!=$monthB) && ($monthToday!=$monthE)){
 					continue;
 				}
 				
 			}
+			
 			$new_array[$i]=	$event;
 			$i++;
-			
 		}
+		
 		$json_data = $new_array;
+	
 	}
 
+	
 	$i=0;
 	//NEXT or OLD
 	if (($type=="NEXT") || ($type=="OLD")){
@@ -281,11 +315,11 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
 				
-				if (($dateB==$dateE) && (time()>$dateB))
+				if (($dateB==$dateE) && ($timestampOnlyDMY >$dateB))
 					continue;
 					
 				if (($dateB!=$dateE) ) {
-					if (time()>$dateE) 
+					if ($timestampOnlyDMY >$dateE) 
 						//echo $event["title"];
 						continue;
 				}
@@ -293,10 +327,10 @@ function eventissimo_json_events($post_per_page=0,$type='null',$defined=""){
 			if ($type=='OLD'){
 				$dateB = $event["date_begin"];
 				$dateE = $event["date_end"];
-				if (($dateB==$dateE) && (time()<$dateB))
+				if (($dateB==$dateE) && ($timestampOnlyDMY <$dateB))
 					continue;
 				if (($dateB!=$dateE) ) {
-					if (time()<$dateB) 
+					if ($timestampOnlyDMY <$dateB) 
 						continue;
 				}
 			}
@@ -435,3 +469,79 @@ function eventissimo_paginate($data, $page = 1, $perPage = 2) {
    return $new_data;
 }
 
+function eventissimo_searchJson($obj, $field, $string) {
+	$items = json_decode($obj);
+	
+    foreach ( $items as $item ) {
+		foreach ( $item as $key => $value) {
+			if (($key == $field) && ($item->$field==$string)) {
+				$array_filter[] = $item;
+			}
+		}
+	}
+    return $array_filter;
+}
+
+
+function eventissimo_searchJson_between($obj, $field1, $field2, $string1,$string2,$ext) {
+	$items = json_decode($obj);
+    foreach ( $items as $item ) {
+		if ($ext){
+			if (($item->$field1 >= $string1) && ($item->$field2 <= $string2)) {
+				$array_filter[] = $item;
+			}
+		} else {
+			if (($item->$field1 <= $string1) && ($item->$field2 >= $string2)) {
+				$array_filter[] = $item;
+			}
+		}
+	}
+    return $array_filter;
+}
+
+function eventissimo_text_date($data_begin,$data_end,$hour_begin,$hour_end){
+	if ($data_begin!=$data_end){
+		if (trim($hour_begin)!="" && trim($hour_end)!="" ){
+			$string[1] = $data_begin;
+			$string[2] = $hour_begin;
+			$string[3] = $data_end;
+			$string[4] = $hour_end;
+			$stringdate = __("{1} at {2} until {3} at {4}","eventissimo");
+			for($i = 1; $i <= count($string); $i++){
+				$stringdate = str_replace('{'.$i.'}', $string[$i], $stringdate);
+			}
+		} else {
+			$string[1] = $data_begin;
+			$string[2] = $data_end;
+			$stringdate = __("{1} until {2}","eventissimo");
+			for($i = 1; $i <= count($string); $i++){
+				$stringdate = str_replace('{'.$i.'}', $string[$i], $stringdate);
+			}
+		}
+	} else { 
+		$string[1] = $data_begin;
+		$string[2] = $hour_begin;
+		$string[3] = $hour_end;
+		if (trim($hour_begin)!="" && trim($hour_end)!="" ){
+			$stringdate = __("{1}  {2} - {3}","eventissimo");
+			for($i = 1; $i <= count($string); $i++){
+				$stringdate = str_replace('{'.$i.'}', $string[$i], $stringdate);
+			}
+		}
+		else
+			$stringdate =$string[1];
+	}	
+	return $stringdate;
+}
+
+
+function eventissimo_isValidTimeStamp($timestamp,$format='Y-m-d'){
+	if (is_numeric($timestamp)) {
+		 if(strtotime(date_i18n($format,$timestamp)) == $timestamp) {
+			return true;
+		} else 
+			return false;
+	} else {
+		return false;
+	}
+}

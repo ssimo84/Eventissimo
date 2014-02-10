@@ -30,19 +30,22 @@ function eventissimo_frontend_cycle($limit,$view,$defined=''){
 		
 		$list = "<div class='slideEvent slide_events_" . $timestamp . "'><div class='cycle-slideshow' data-cycle-auto-height='16:9' data-cycle-caption-template='{{cycleTitle}}' data-cycle-caption='#adv-custom-caption_" . $timestamp . "'>";
 		$list .= "</div><div id='adv-custom-caption_" . $timestamp . "' class='div_caption_cycle'></div></div>";
-		$list .= "<script>";
-		$list .= "jQuery(function(){";
+		?><script>jQuery(function(){
+
 	
+		<?php
 		
 		foreach ($response as $event){
+
 			$images = $event->cover!="" ? $event->cover : "<img src='" . BASE_URL_NOIMAGES_COVER . "' title='" . $event->title . "'>";
-			$list .= 'jQuery(".slide_events_' . $timestamp . ' div.cycle-slideshow").cycle(
-				"add","<a href=\'' . $event->url . '\' data-cycle-title=\'' .  addslashes($event->title) . '\'>' . addslashes($images) . '</a>");
-			';
-		}
-		
-		$list .= "})";
-		$list .= "</script>";
+
+			?>
+			jQuery('.slide_events_<?php echo $timestamp;?> div.cycle-slideshow').cycle('add','<a href="<?php echo $event->url;?>" data-cycle-title="<?php echo addslashes($event->title)?>"><?php echo addslashes($images);?></a>');
+
+		<?php }?>
+		})</script>
+<?php
+
 	}
 	else $list = __("There are no events","eventissimo");
 	$output = ob_get_contents();
@@ -164,6 +167,7 @@ function eventissimo_frontend_taxonomy($numview,$type){
 				$children = '<ul>';
 				foreach ($child_terms as $childterm) {
 					$children .= '<li><a href="' . get_term_link( $childterm->slug,$type) . '">' . $childterm->name . '</a>';
+				
 					if ($numview) $children .= " (" . $childterm->count . ")";
 					$children .= '</li>';
 					$count +=    $childterm->count;

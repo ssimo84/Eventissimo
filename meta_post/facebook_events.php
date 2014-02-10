@@ -32,8 +32,7 @@ function eventissimo_eventFacebook_field( $post ) {
 	$statusEventFB = isset( $values['statusEventFB'] ) ? esc_attr( $values['statusEventFB'][0] ) : "";
 	$pagesFacebookAppId = get_option("wp_fbAppId");
 	$pagesFacebookPrivateKey = get_option("wp_fbprivateKey");
-
-
+	$idAuthorFB = isset( $values['idAuthorFB'] ) ? esc_attr( $values['idAuthorFB'][0] ) : "";
 
 	?>
 
@@ -64,32 +63,41 @@ function eventissimo_eventFacebook_field( $post ) {
 
 				if (($pagesFacebookAppId!="") && ($pagesFacebookPrivateKey!="")){
 				 ?>
+					<div id="addfb">
                     <input type="hidden" name="appTokenFb" id="appTokenFb" value=""/>
                     <input type="hidden" name="appTokenUidFb" id="appTokenUidFb" value=""/>
-                    <input type="hidden" name="appIdFb" id="appIdFb" value="<?php echo FACEBOOOK_API_KEY;?>"/> 
+                    <input type="hidden" name="idAuthorFB" id="idAuthorFB" value="<?php echo $idAuthorFB;?>"/>
+					<input type="hidden" name="appIdFb" id="appIdFb" value="<?php echo FACEBOOOK_API_KEY;?>"/> 
                     <div id="fb-root"></div>
                  <?php
 					if ($idEventFb==""){
-
+						$sameAuthor = TRUE;
 						_e("Do you want to allow the plugin to create the event on FACEBOOK automatically?","eventissimo") ?> 
 						<input type="checkbox" name="autoFb" id="autoFb" value="Yes"/>
                         
                         
 					<?php
 					}else {
-	
 						$disabled = "disabled='disabled'";
-						_e("This event will be updated automatically on Facebook","wimtvpro");
+						$sameAuthor = eventissimo_sameauthor($idEventFb,$idAuthorFB);
+						if ($sameAuthor){
+						
+						?> <div id="updatefb"> <?php
+						
+						_e("This event will be updated automatically on Facebook","eventissimo");
 						$imagesCreated = "<a target='_EventFb' href='" . $urlEventFb . "'><img src='" . BASE_URI_IMAGES . "/FB-created.png'></a>";
 						?>
 						<input type="hidden" name="autoFb" id="autoFb" value="<?php echo $idEventFb;?>"/>
                         <?php
+						}
 					}
-					?>
-					<select name="statusEventFB">
-					<?php echo createStatusPublicFacebook($statusEventFB);?>
-                    </select>
+					if ($sameAuthor){
+						?>
+						<select name="statusEventFB">
+						<?php echo createStatusPublicFacebook($statusEventFB);?>
+						</select></div>
 					<?php
+					}
 				} else {
 					_e("If you would create the event on FACEBOOK automatically update your configuration of Facebook","eventissimo");
 					echo ' <a href="edit.php?post_type=events&page=eventissimo_setting"> '; 
@@ -105,16 +113,16 @@ function eventissimo_eventFacebook_field( $post ) {
     
 	    <tr>
             <td><label for="urlFB"><?php _e("Link Event Facebook","eventissimo") ?></label></td>
-            <td>
+            <td width='80%'>
             	
-                <input type="text" name="urlEventFB" <?php echo $disabled;?> id="urlEventFB" value="<?php echo $urlEventFb; ?>"/> <?php echo $imagesCreated; ?>
+                <input type="text" style="width:100%" name="urlEventFB" <?php echo $disabled;?> id="urlEventFB" value="<?php echo $urlEventFb; ?>"/> <?php echo $imagesCreated; ?>
             	<input type="hidden" name="idEventFb" id="idEventFb" value="<?php echo $idEventFb; ?>"/>
             </td>         
          </tr>
         
          <tr>
             <td><label for="urlEventSite"><?php _e("Another Link","eventissimo") ?></label></td>
-            <td><input type="text" name="urlEventSite" id="urlEventSite" value="<?php echo $urlEventSite; ?>"/></td>
+            <td width='80%'><input type="text" style="width:100%" name="urlEventSite" id="urlEventSite" value="<?php echo $urlEventSite; ?>"/></td>
           
           </tr>
           
@@ -162,11 +170,7 @@ function eventissimo_save_eventFacebook()  {
 
 				$createTimeZoneEnd = new DateTime($dateEnd, new DateTimeZone(get_option('timezone_string')));
 
-	
-
 				$description = str_replace("\\","",$_POST["descrizione"]) . "\n\nPowered by " . get_site_url();
-
-				
 
 				$offsetStart = $createTimeZoneStart->getOffset();
 
@@ -181,7 +185,6 @@ function eventissimo_save_eventFacebook()  {
 					$start_event = $dateStart . "T" . $hourStart . ":00" . $offsetStart;
 				}
 				else
-
 					$start_event = $dateStart;
 
 				if ($hourEnd !=""){
@@ -189,13 +192,18 @@ function eventissimo_save_eventFacebook()  {
 					$end_event = $dateEnd . "T" . $hourEnd . ":00" . $offsetEnd;
 				}
 				else 
-
 					$end_event = $dateEnd;
 
+				if ($end_event==$start_event) $end_event="";
 					
 				$city = $_POST["city"]!="" ? $_POST["city"] : "";
 				$address = $_POST["address"] !="" ? $_POST["address"] : "";
 				
+				if ($idAuthorFB!="")
+					update_post_meta($post->ID, "idAuthorFB",$_POST["idAuthorFB"]);
+				else
+					update_post_meta($post->ID, "idAuthorFB",$_POST["appTokenUidFb"]);
+					
 				if ($_POST["autoFb"]=="Yes"){
 					//Create Events
 					$idEventFfb = eventissimo_eventsConnectFacebook($post->post_title, $post->guid,$description,$start_event,$end_event,$city,$address,$post->ID,$_POST["appTokenFb"],$_POST["appTokenUidFb"],$privacy_type);

@@ -46,6 +46,7 @@ function eventissimo_eventData_field( $post ) {
 	$everyYear = isset( $values['EveryYear'] ) ? esc_attr( $values['EveryYear'][0] ) : ""; 
 	$dayRepeat = isset( $values['dayRepeat'] ) ? esc_attr($values['dayRepeat'][0] ) : ""; 
 	$dayRepeatSelect = isset( $values['dayRepeatSelect'] ) ? unserialize($values['dayRepeatSelect'][0]) : array();
+	
 	if (count($dayRepeatSelect ))
 		$dayRepeatSelect = unserialize($dayRepeatSelect);
 	if (isset($values['untilRepeat']) && ($values['untilRepeat'][0]!="")){
@@ -63,6 +64,8 @@ function eventissimo_eventData_field( $post ) {
 	if ($post_parent >0 ) {
 		$is_parent = true;
 	}
+
+	$randomColor = ($values['colorRandom']!="") ? esc_attr($values['colorRandom'][0]) : '#' . strtoupper(substr(md5(rand()), 0, 6));
 
 	$oraArray = array("00","01","02","03","04","05","06","07","08","09","10","11","12","13", "14","15","16","17","18","19","20","21","22","23");
 
@@ -262,6 +265,8 @@ function eventissimo_eventData_field( $post ) {
 	    <textarea name="descrizione" style="width:100%;height:150px" id="descrizione" ><?php echo $text; ?></textarea>  
     </p>
 
+	<input type="hidden" name="randomColor" id="randomColor" value="<?php echo $randomColor ?>"/>
+
     <input type="hidden" name="data_inizio_yy-mm-dd" id="data_inizio_yy-mm-dd" value="<?php echo  date_i18n( "Y-m-d",$values['data_inizio'][0]); ?>"/>
     <input type="hidden" name="data_fine_yy-mm-dd" id="data_fine_yy-mm-dd" value="<?php echo date_i18n( "Y-m-d",$values['data_fine'][0]); ?>"/>
     <input type="hidden" name="untilRepeat_yy-mm-dd" id="untilRepeat_yy-mm-dd" value="<?php echo date_i18n( "Y-m-d",$timestampUntil); ?>"/>
@@ -397,8 +402,12 @@ function eventissimo_save_eventData()  {
 	global $post;
 	
 	if (isset($post->ID)){
+		
 		$status = get_post_status($post->ID);
 		if ( $status!="trash" && isset($_POST["isForm"])) {	
+			
+			
+			update_post_meta($post->ID, "colorRandom", $_POST['randomColor']);
 			update_post_meta($post->ID, "descrizione", isset( $_POST['descrizione'] ) ? esc_textarea( $_POST['descrizione'] ) : "");
 			update_post_meta($post->ID, "data_inizio", strtotime($_POST["data_inizio_yy-mm-dd"]));
 			update_post_meta($post->ID, "ora_inizio", $_POST["ora_inizio"]);

@@ -29,42 +29,14 @@ function checkFBStatus(){
 
 };
 	
-	/*FB.Event.subscribe('auth.sessionChange', function(response) {
-		if (response.session) {
-			var session = FB.getSession();
-			fbtoken = session.access_token;
-			fbuserid = session.uid;
-			jQuery("#appTokenFb").val(fbtoken);
-			console.log(fbtoken);
-			jQuery("#appTokenUidFb").val(fbuserid);
-		}
-	});
-	FB.getLoginStatus(function(response) {
-		console.log(response);
-		if (response.session) {
-			console.log("12345");
-			var session = FB.getSession();
-			fbtoken = session.access_token;
-			fbuserid = session.uid;
-			jQuery("#appTokenFb").val(fbtoken);
-			jQuery("#appTokenUidFb").val(fbuserid);
-		}
-		else{
-			loginFB();
-		}
-	});
-	*/
-
-
 
 function getAPIFB() {
 	FB.api('/me/permissions', function (response) {
-		if((response["data"][0].create_event == 1) && (response["data"][0].publish_stream == 1) && (response["data"][0].photo_upload == 1) && (response["data"][0].rsvp_event == 1) && (response["data"][0].publish_actions == 1)) {
+		if((response["data"][0].create_event == 1) && (response["data"][0].user_events == 1) && (response["data"][0].publish_stream == 1) && (response["data"][0].photo_upload == 1) && (response["data"][0].rsvp_event == 1) && (response["data"][0].publish_actions == 1)) {
 			FB.getLoginStatus(function(responseUser) {
 				var uid = responseUser.authResponse.userID;
    			 	var accessToken = responseUser.authResponse.accessToken;
-				jQuery("#appTokenUidFb").val(uid);
-				jQuery("#appTokenFb").val(accessToken);
+				assignEventFB(uid,accessToken);
 			});
 		} else {
 			loginFB();
@@ -79,10 +51,9 @@ function loginFB() {
 			var session = FB.getSession();
 			fbtoken = session.access_token;
 			fbuserid = session.uid;
-			jQuery("#appTokenFb").val(fbtoken);
-			jQuery("#appTokenUidFb").val(fbuserid);
+			assignEventFB(fbuserid,fbtoken);
 		}
-	}, {scope:'create_event,publish_stream,photo_upload,publish_actions,rsvp_event'});
+	}, {scope:'create_event,publish_stream,photo_upload,user_events,publish_actions,rsvp_event'});
 }
 
 function logoutFB() {
@@ -91,3 +62,13 @@ function logoutFB() {
 	});
 }
 
+function assignEventFB(appTokenUidFb,appTokenFb){
+	jQuery("#appTokenFb").val(appTokenFb);
+	jQuery("#appTokenUidFb").val(appTokenUidFb);
+	appAuthorId = jQuery("#idAuthorFB").val();
+	if (appAuthorId=="")
+		jQuery("#idAuthorFB").val(appTokenUidFb);
+	if ((appAuthorId!="") && (appAuthorId!="appTokenUidFb")){
+		jQuery("updatefb").hide();
+	}
+}

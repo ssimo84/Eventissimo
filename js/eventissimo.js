@@ -63,8 +63,7 @@ function getMaps(latLong,maxZoom){
 						callback:function(results){
 							var map = jQuery(this).gmap3("get");
 							positionString = marker.getPosition();
-							console.log(positionString);
-							jQuery("#latlongMaps").val(positionString.ob + "," + positionString.pb);
+							jQuery("#latlongMaps").val(marker.getPosition().lat() + "," + marker.getPosition().lng());
 								
 							var geocoder = new google.maps.Geocoder();  
 							geocoder.geocode( 

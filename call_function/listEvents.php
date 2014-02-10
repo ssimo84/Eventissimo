@@ -34,7 +34,7 @@ function eventissimo_listEvent(&$list,$response,$post_per_page,$current,$datevie
 	
 		$list .= "</ul>";
 	} else {
-		$list = __("There are no events","eventissimo");
+		$list = "<p>"  . __("There are no events","eventissimo") . "</p>";
 	}
 	return $list;
 }

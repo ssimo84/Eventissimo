@@ -4,12 +4,13 @@ Tags: events, event, calendar, facebook, shortcode, widget
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=UXV6CWADKJQ5A
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 1.2
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Create and organize events into your site.
 Your events also automatically automatically created on Facebook.
+Import your Facebook Events.
 
 == Description ==
 Now into your site Wordpress you can create and organize your events.
@@ -40,6 +41,10 @@ Use Widget for view events
 
 = Facebook =
 To automate the creation of an event on facebook you have to register as a developer on facebook, create an APP and to recove id and privat key of APP.
+NEWS: Import your events of Facebook!!!
+
+= Note: Single Template =
+If you would change single template of events copy pages/events-template-single.php into your template and custom it.
 
 == Screenshots ==
 1. Create Facebook Post 
@@ -59,3 +64,7 @@ To automate the creation of an event on facebook you have to register as a devel
 * Correct Bugs css and Facebook
 = 1.2 =
 * Correct Bugs Link Events, added Slideshow events
+= 1.3 =
+* Added Single Events custom
+= 1.3.5 =
+* Import your Facebook events

@@ -27,7 +27,7 @@ margin:0 5px 0 0;
  
 div.description_event .short-text {
     overflow: hidden;
-    height: 10em;
+    max-height: 10em;
 }
  
 div.description_event .full-text{
@@ -42,9 +42,9 @@ div.description_event .show-more a{
 	width:100%; text-decoration:none;
 }
 
-.img_author_circular {text-align:center;}
+.img_author_circular {text-align:center;margin:0 auto;}
 .img_author_circular img{
-	margin: 0 10px 0 0;
+margin: 0 auto;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
 	border-radius: 20px;

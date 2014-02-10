@@ -30,9 +30,8 @@
 #updateMaps,#updateDate {color:#03F; cursor:pointer;}
 #updateMaps:hover,#updateDate:hover {text-decoration:underline;}
 
-#maps{width: 450px;
-height: 200px;}
-
+div#maps{width: 450px; height: 200px;}
+ul#sortable li {cursor:move;}
 #eventCalendarExample {margin:0 auto;}
 
 #eventCalendarExample  .ui-datepicker {margin:0 auto;}

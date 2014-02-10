@@ -1,7 +1,7 @@
 <?php
-/**
-* The template for displaying all single events
-*
+/*
+Single Post Template: Single Events
+
 */
 
 get_header(); ?>
